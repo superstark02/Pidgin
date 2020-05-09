@@ -1,25 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import AradhnaAcademy from './AradhnaAcademy.js'
+import VishalInstitute from './VishalInstitute.js'
+import { 
+  BrowserRouter as Router, 
+  Route,
+} from 'react-router-dom'; 
+
+var classes = "4/week";
+var fees = "400";
+var experience = "9+years";
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Router>
+    <div>
+      <Route path="/AradhnaAcademy" component={AradhnaAcademy}></Route>
+      <Route path="/VishalInstitute" component={VishalInstitute}></Route>
     </div>
+    </Router>
   );
 }
 

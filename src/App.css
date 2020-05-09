@@ -1,38 +1,134 @@
-.App {
-  text-align: center;
+.wallpaper {
+  z-index: -1;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  height: 400px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.overlay {
+  position: absolute; 
+  bottom: 0; 
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1; 
+  width: 100%;
+  transition: .5s ease;
+  opacity:1;
   color: white;
+  font-size: 20px;
+  text-align: center;
+  height: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.details{
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: white;
+  border-radius: 2%;
+  margin-top: -10%;
+  margin-bottom: 10%;
+  z-index: 1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.avatar{
+  margin-top: 30%;
+}
+
+.table{
+  width: 100%;
+  table-layout: fixed;
+}
+.th{
+  padding-top: 5%;
+}
+.tr{
+  text-align: center; 
+  font-size: 2vh;
+}
+
+.feat {
+	/*background: var(--shade);*/
+	position: absolute;
+	top: 95vw;
+	z-index: 50;
+	width: 100vw;
+	display: flex;
+	justify-content: space-around;
+}
+
+.feat .list {
+	background: var(--white);
+	width: 250px;
+	text-align: center;
+	padding: 20px 0;
+	border-radius: 10px;
+	box-shadow: var(--bs);
+	font-size: .8em;
+}
+
+.feat .list .main {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.container {
+	position: relative;
+}
+
+.container .enroll {
+	width: 90vw;
+	margin: 5vw;
+	border-radius: 10px;
+	box-shadow: var(--bs);
+	background: var(--blue);
+	padding: 30px 0;
+	text-align: center;
+	text-transform: uppercase;
+	color: var(--white);
+	font-size: 1.2em;
+	margin-top: 100px;
+}
+
+.container .head {
+	width: 90vw;
+	margin: 50px 5vw;
+	border-bottom: 1px solid #555;
+	color: #555;
+}
+
+.container .info {
+	width: 86vw;
+  margin-left: 7vw;
+  margin-right: 7vw;
+  margin-top: 10px;
+  margin-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid #000;
+	height: 60px;
+	line-height: 60px;
+	font-size: 1.1em;
+}
+
+.carousel {
+	height: 80vw;
+	display: flex;
+	overflow-x: scroll;
+	/*padding-right: 20px;*/
+}
+
+.carousel img {
+	/*display: inline;*/
+	height: 76vw;
+	margin: 20px;
+	border-radius: 20px;
 }
