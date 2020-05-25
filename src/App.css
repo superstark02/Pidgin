@@ -1,134 +1,237 @@
-.wallpaper {
-  z-index: -1;
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-  min-width: 100%;
-}
-
-.image {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  min-width: 100%;
-  height: 400px;
-}
-
-.overlay {
-  position: absolute; 
-  bottom: 0; 
-  background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.5); /* Black see-through */
-  color: #f1f1f1; 
-  width: 100%;
-  transition: .5s ease;
-  opacity:1;
-  color: white;
-  font-size: 20px;
-  text-align: center;
-  height: 100%;
-}
-
-.details{
-  margin-left: 5%;
-  margin-right: 5%;
-  background-color: white;
-  border-radius: 2%;
-  margin-top: -10%;
-  margin-bottom: 10%;
-  z-index: 1;
-}
-
-.avatar{
-  margin-top: 30%;
-}
-
-.table{
-  width: 100%;
-  table-layout: fixed;
-}
-.th{
-  padding-top: 5%;
-}
-.tr{
-  text-align: center; 
-  font-size: 2vh;
-}
-
-.feat {
-	/*background: var(--shade);*/
-	position: absolute;
-	top: 95vw;
-	z-index: 50;
-	width: 100vw;
-	display: flex;
-	justify-content: space-around;
-}
-
-.feat .list {
-	background: var(--white);
-	width: 250px;
-	text-align: center;
-	padding: 20px 0;
-	border-radius: 10px;
-	box-shadow: var(--bs);
-	font-size: .8em;
-}
-
-.feat .list .main {
-	font-size: 1.2em;
-	font-weight: bold;
-}
-
-.container {
-	position: relative;
-}
-
-.container .enroll {
-	width: 90vw;
-	margin: 5vw;
-	border-radius: 10px;
-	box-shadow: var(--bs);
-	background: var(--blue);
-	padding: 30px 0;
-	text-align: center;
-	text-transform: uppercase;
-	color: var(--white);
-	font-size: 1.2em;
-	margin-top: 100px;
-}
-
-.container .head {
-	width: 90vw;
-	margin: 50px 5vw;
-	border-bottom: 1px solid #555;
-	color: #555;
-}
-
-.container .info {
-	width: 86vw;
-  margin-left: 7vw;
-  margin-right: 7vw;
-  margin-top: 10px;
-  margin-bottom: 10px;
-	display: flex;
-	justify-content: space-between;
-	border-bottom: 1px solid #000;
-	height: 60px;
-	line-height: 60px;
-	font-size: 1.1em;
-}
-
-.carousel {
-	height: 80vw;
+.imageCarousel {
+	display: block;
+	width: auto;
+	height: 250px;
+	margin-right: 5px;
+  }
+.carouselContainer{
 	display: flex;
 	overflow-x: scroll;
-	/*padding-right: 20px;*/
+	width: 100%;
+	background-color: #E6E6E6;
 }
+.overlayBlack{
+	position: absolute; 
+	top: 0; 
+	background-image: linear-gradient(to bottom,black, rgba(0,0,0,0));
+	height: 50px; 
+	max-width: 100%;
+	width: 100%;
+	opacity:1;
+}
+.overlayContainer {
+	position: relative;
+	max-width: 100%;
+	background-color: #E6E6E6;
+  }
+.backIcon{
+	margin-top: 20px;
+	margin-left: 20px;
+}
+.displayTitle{
+	margin: 10px 10px;
+	max-width: 100%;
+	font-weight: 500;
+	color: #043540;
+	align-self: center;
 
-.carousel img {
-	/*display: inline;*/
-	height: 76vw;
-	margin: 20px;
-	border-radius: 20px;
+	font-size: 23px;
+	display: flex;
 }
+.mapIcon{
+	margin-left: auto;
+	margin-right: 20px;
+}
+.displaySubtitle{
+	margin: 0px 10px;
+	max-width: 100%;
+	font-weight: 300;
+	font-size: small;
+	height: auto;
+}
+.classCard{
+	border-radius: 5px;
+	height: 180px;
+	width: 140px;
+	background-color: white;
+	margin: 20px 10px;
+	text-align: center;
+	border-radius: 20px 0px 20px 0px;
+	font-size: 15px;
+	font-weight: 300;
+	padding: 10px 10px;
+	background-image: url('./Images/courses.png');
+}
+.offers{
+	height: auto;
+	padding: 6px 30px;
+	color: white;
+	white-space: nowrap;
+	width: 300px;
+	margin: 5px 10px;
+	border-radius: 5px;
+	font-size: 13px;
+	font-weight: 500;
+	background-size: cover;
+	background-position: center;
+	background-image: url(./Images/Offer.png);
+	background-repeat: no-repeat;
+}
+.width_{
+	width: 100px;
+	margin: 0px 10px;
+}
+.displaySubtitle2{
+	margin: 10px 0px 0px 10px;
+	max-width: 100%;
+	font-weight: 500;
+	font-size: small;
+	display: flex;
+}
+.list{
+	padding: 5px;
+	margin: 5px;
+	border-radius: 5px;
+	width: auto;
+	height: 40px;
+	display: inline-block;
+	background-color: #04BF7B;
+	color: white;
+}
+.qualifications{
+	margin: 0px 10px;
+	max-width: 100%;
+	font-weight: 300;
+	font-size: small;
+	color: #043540;
+}
+.courseItem{
+	font-size: 14px;
+	font-weight: 600;
+	margin: 10px 10px 0px 10px;
+}
+.displayAge{
+	background-color: #58f73b;
+	padding: 5px;
+    width: 50px;
+    color: white;
+    font-size: 10px;
+	border-radius: 3px;
+	font-weight: 400;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+.displayType{
+	background-color: #f83b82;
+    margin-left: 10px;
+    padding: 5px;
+    width: auto;
+    white-space: nowrap;
+    color: white;
+    font-size: 10px;
+    border-radius: 3px;
+	font-weight: 400;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+td{
+	padding: 10px;
+	color: #043540;
+	font-weight: 300;
+	font-size: 12px;
+	vertical-align: middle;
+	height: 15px;
+}
+.eligibility{
+	width: 100%;
+}
+/*--------------------------------------School Css---------------------------------------*/
+
+.appBar{
+	width: 100%;
+	max-width: 100%;
+	color: white;
+	background-color:#043540;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	font-size: large;
+    font-weight: 200;
+    text-align: center;
+}
+.richText{
+	text-align: center;
+	max-width: 100%;
+	padding: 0px 20px;
+	color: #043540;
+	font-weight: 400;
+	font-size: 20px;
+}
+.richText1{
+	text-align: center;
+	max-width: 100%;
+	padding: 0px 20px;
+	color: #043540;
+	font-weight: 700;
+	font-size: 20px;
+	margin: 10px;
+}
+.device{
+	z-index: 100;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	max-width: 100%;
+	background-color: white;
+}
+.tab{
+	color: grey
+}
+div{
+	-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+Link{
+	-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+html
+{
+  -webkit-tap-highlight-color:transparent;
+}
+.tabs{
+	display: none;
+}
+.unresponsive{
+	visibility: hidden;
+}
+@font-face {
+	font-family: 'MyFont';
+	src: local('MyFont'), url(./fonts/abeezee/ABeeZee-Regular.ttf) format('ttf');
+  }
+
+  @media only screen and (min-width:620px) {
+	/* For mobile phones: */
+	.unresponsive{
+		visibility: visible;
+	}
+	.device{
+		display: none;
+	}
+	.resposive{
+		display: none;
+	}
+	.tabs{
+		display: inline;
+		justify-content: space-around;
+	}
+  }

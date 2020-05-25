@@ -1,0 +1,81 @@
+.title{
+    background-color: white;
+    font-size: large;
+    font-weight: 200;
+    text-align: center;
+}
+.orange{
+    color: white;
+    background-color: #043540;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.searchBar{
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+    border: solid 1px white;
+    border-radius: 4px;
+    display: flex;
+    align-content: center;
+    padding: 10px 20px;
+    position: sticky;
+    background-color: white;
+    height: auto;
+}
+.hint{
+    font-size: 16px;
+    margin-left: 10px ;
+    color: grey;
+}
+.filters{
+    white-space: nowrap;
+    display: flex;
+    margin-top: 3px;
+    margin-left: 5px;
+    margin-right: 7px;   
+    border: solid #043540 0.5px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    position: sticky;
+}  
+.filtertext{
+    font-size: 13px;
+    color: #043540;
+    font-weight: 300;
+}
+.filterRow{
+    margin-right: 10px;
+    overflow-x: scroll;
+    height: auto;
+    padding-bottom: 10px;
+}
+a{
+    text-decoration: none;
+}
+.appBarWebsite{
+    display: none;
+}
+@media only screen and (min-width:620px) {
+	/* For mobile phones: */
+	.title{
+        display: none;
+    }
+    .appBarWebsite{
+        display: flex;
+        width: 100%;
+        height: auto;
+        padding: 10px 20px;
+        align-content: center;
+        color: #043540;
+        background-color: white;
+    }
+    .appButton{
+        border-bottom: white solid 2px;
+    }
+    .appButton:hover{
+        border-bottom: #043540 solid 2px;
+        cursor: pointer;
+    }
+  }
