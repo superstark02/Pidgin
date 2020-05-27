@@ -70,7 +70,9 @@ class ListItem extends React.Component{
 
     render(){
         return (
-            <Link to={{
+                <ButtonBase style={{textAlign:'left',maxWidth:'100%',padding:'0px 5px'}}>
+                <div class='item'>
+                <Link to={{
                 pathname:'/classDisplay',
                 state:{
                   docName: this.state.id,
@@ -84,14 +86,12 @@ class ListItem extends React.Component{
                 }
               }}
               >
-                <ButtonBase style={{textAlign:'left',maxWidth:'100%',padding:'0px 5px'}}>
-                <div class='item'>
-                
                   <div class='showImage'>
                     <img src={this.state.i1} height='200px' style={{marginRight:'2px'}}></img>
                     <img src={this.state.i2} height='200px' style={{marginRight:'2px'}}></img>
                     <img src={this.state.i3} height='200px' style={{marginRight:'2px'}}></img>
                   </div>
+                </Link>
                   <div style={{display:'flex',position:'absolute',zIndex:'50'}} >
                     <div class='age'>
                       Age: {this.state.age}+
@@ -101,13 +101,43 @@ class ListItem extends React.Component{
                     </div>
                   </div>
                     <div class='container'>
+
+                  <Link to={{
+                    pathname:'/classDisplay',
+                    state:{
+                      docName: this.state.id,
+                      name: this.state.name,
+                      location: this.state.location,
+                      uid: this.state.uid,
+                      type: this.state.type,
+                      woman: this.state.woman,
+                      online: this.state.online,
+                      address: this.state.adress
+                    }
+                  }}
+                  >
                     <div class='name'>{this.state.name}</div>
+                  </Link>
                       <div class='map'>
                         <a href={this.state.location}><FaMap size='15'color='#04BFBF' /></a>
                         <div>Map</div>
                         </div>
                     </div>
                     
+                    <Link to={{
+                      pathname:'/classDisplay',
+                      state:{
+                        docName: this.state.id,
+                        name: this.state.name,
+                        location: this.state.location,
+                        uid: this.state.uid,
+                        type: this.state.type,
+                        woman: this.state.woman,
+                        online: this.state.online,
+                        address: this.state.adress
+                      }
+                    }}
+                    >
                       <div class='type'>
                         {this.state.adress}
                       </div>
@@ -115,11 +145,10 @@ class ListItem extends React.Component{
                       <div class='fees'>
                         <div>Starting Fees  &#8377;{this.state.fees}</div>
                       </div>
+                    </Link>
                     
                 </div>
                 </ButtonBase> 
-                
-              </Link>
         )
     }
 }

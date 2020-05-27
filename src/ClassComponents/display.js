@@ -1,23 +1,29 @@
 import React from 'react';
 import '../App.css';
-import {FaMapMarkerAlt, FaChalkboardTeacher, FaPencilRuler, FaInfoCircle,FaArrowLeft, FaChevronDown, FaClock, FaGlobe, FaStopwatch, FaCalendar, FaFemale, FaUser, FaUsers} from 'react-icons/fa';
+import {FaMapMarkerAlt, FaChalkboardTeacher, FaPencilRuler, FaInfoCircle,FaArrowLeft, FaChevronDown, FaClock, FaGlobe, FaStopwatch, FaCalendar, FaFemale, FaUser, FaUsers, FaChevronLeft} from 'react-icons/fa';
 import ReactAvatar from 'react-avatar';
-import createHistory from 'history/createBrowserHistory'
+import Slide from '@material-ui/core/Slide';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import {db} from '../firebase'
 import trial from '../Images/trial.png'
 import {motion } from 'framer-motion';
-import createBrowserHistory from 'history/createBrowserHistory';
 import { Link } from 'react-router-dom';
+import { Dialog } from '@material-ui/core';
 
+var title
 var name
 var womenCell;
 var onlinecell;
 
 var women;
 var online;
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 class ClassesDisplay extends React.Component{
   
@@ -29,13 +35,31 @@ class ClassesDisplay extends React.Component{
     note: null,
     courses: null,
     offers: null,
-    id:''
+    id:'',
+
+    courseId:'',
+    courseName:'',
+    courseImage:'',
+    courseFees:'',
+    courseDetails:''
   }
 
   constructor(){
     super();
+    this.state={
+      open:false
+    }
    this.goBack = this.goBack.bind(this);
+   this.handleClickOpen = this.handleClickOpen.bind(this)
+   this.handleClose = this.handleClose.bind(this)
 }
+
+handleClickOpen = () => {
+  this.setState({open:true})
+};
+handleClose = () => {
+  this.setState({open:false})
+};
 
 goBack(){
   this.props.history.goBack();
@@ -154,7 +178,7 @@ goBack(){
     
     return (
         <motion.div initial='out' animate='in' exit='out' variants={pageVariants} transition={pageTransitions}
-          style={{zIndex:'200'}}>
+          style={{backgroundColor:'white',position:'absolute',zIndex:'300',maxWidth:'100%',width:'100%'}}>
         <div class='overlayContainer'>
         {
           this.state.classes&&
@@ -269,15 +293,26 @@ goBack(){
           this.state.courses&&
           this.state.courses.map(course=>{
             return(
-              <div>
-                  <div class='classCard'>
+              <div>   
+               <Link to={{
+                 pathname:'/course',
+                 state:{
+                   title: course.title,
+                   price: course.price,
+                   image: course.image,
+                   details: course.details,
+                   name: this.props.location.state.name,
+                 }
+               }}>
+                <div class='classCard'>
                     <ReactAvatar src={course.image} round='50%' size='60'/><br/>
                     <hr color='#E6E6E6' size='0.5' ></hr>
                     <div class='courseItem' >{course.title}</div>
                     <div style={{color:'#043540'}} >&#8377; {course.price}</div>
                     <div style={{color:'#043540',fontSize:'10px'}}>More details</div>
                   </div>
-                  <div style={{width:'40px'}}></div>
+               </Link>
+                <div style={{width:'40px'}}></div>
               </div>
               )
           })
@@ -337,6 +372,7 @@ goBack(){
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <div style={{height:'60px'}} ></div>
+
       </motion.div>
     )
   }

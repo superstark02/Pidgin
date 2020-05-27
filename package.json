@@ -28,6 +28,7 @@
     "react-native-vector-icons": "^6.6.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
+    "react-shimmer": "^3.0.3",
     "react-simple-image-slider": "^1.0.3",
     "react-slideshow-image": "^1.4.2",
     "read-more-react": "^1.0.10"

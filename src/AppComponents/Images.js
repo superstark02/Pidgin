@@ -3,7 +3,8 @@ import {db} from '../firebase'
 import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 import './Images.css'
-import Shimmer from './Shimmer';
+import MyShimmer from './Shimmer';
+import Loader from 'react-loader-spinner';
 
 const chevronWidth = 40;
 
@@ -28,7 +29,7 @@ class Images extends React.Component{
     
     render(){
       if(this.state.images==null){
-        return <Shimmer/>
+        return <center><Loader type="TailSpin" width='50' color='#043540'/></center>
       }
         return(
            <div>

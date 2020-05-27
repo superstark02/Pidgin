@@ -3,8 +3,8 @@ import {FaThumbsUp,} from 'react-icons/fa'
 import {rdb} from '../firebase'
 import './list.css'
 import ListItem from './listItem';
-
-import Shimmer from '../AppComponents/Shimmer.js'
+import MyShimmer from '../AppComponents/Shimmer.js';
+import Image, { Shimmer } from 'react-shimmer'
 
 var length;
 var lat
@@ -69,11 +69,12 @@ var lat
           }
           this.setState({words:newState})
         });
+       
       }
       
       render(){
         if(this.state.latitude==0||this.state.words==null){
-          return <Shimmer></Shimmer>
+          return <Shimmer width={900} height={600} />
         }
         else{
           return(

@@ -41,9 +41,9 @@ class SimpleBottomNavigation extends Component {
         onChange={this.handleChange}
         showLabels
       >
-        <BottomNavigationAction label="School" icon={<FaSchool/>} component={Link} to={pathMap[0]} onClick={history.replace('/')} />
-        <BottomNavigationAction label="Classes" icon={<FaIcons />} component={Link} to={pathMap[1]} onClick={history.replace('/')}/>
-        <BottomNavigationAction label="Help" icon={<FaQuestionCircle />} component={Link} to={pathMap[2]} onClick={history.replace('/')}/>
+        <BottomNavigationAction label="School" icon={<FaSchool/>} component={Link} to={pathMap[0]}/>
+        <BottomNavigationAction label="Classes" icon={<FaIcons />} component={Link} to={pathMap[1]} />
+        <BottomNavigationAction label="Help" icon={<FaQuestionCircle />} component={Link} to={pathMap[2]}/>
       </BottomNavigation>
       </div>
     );

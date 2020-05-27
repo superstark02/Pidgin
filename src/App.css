@@ -109,6 +109,7 @@
 	font-size: 14px;
 	font-weight: 600;
 	margin: 10px 10px 0px 10px;
+	font-family: FiraSans;
 }
 .displayAge{
 	background-color: #58f73b;
@@ -202,17 +203,30 @@ Link{
        -moz-user-select: none; /* Old versions of Firefox */
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+								  supported by Chrome, Edge, Opera and Firefox */
+		text-decoration: none;
 }
 html
 {
   -webkit-tap-highlight-color:transparent;
 }
+li{
+	font-family: FiraSansItalic;
+}
+a {color: #043540;}         /* Unvisited link  */
+a:visited {text-decoration: none;} /* Visited link    */
+a:hover {text-decoration: none;}   /* Mouse over link */
+a:active {text-decoration: none;}  /* Selected link   */
+
 .tabs{
 	display: none;
 }
 .unresponsive{
 	visibility: hidden;
+	height: 0px;
+}
+.resposive{
+	height: auto;
 }
 @font-face {
 	font-family: 'MyFont';
