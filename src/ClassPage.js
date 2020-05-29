@@ -34,8 +34,8 @@ class ClassPage extends React.Component{
         <div class='responsive'>
         <div style={{maxWidth:'100%',backgroundColor:'#E6E6E6',overflowY:"hidden",overflowX:"hidden"}}>
           <MyAppBar/>
-          <Images/>
           <Categories/>
+          <Images/>
           <Offer/>
           <TopPicks/>
           <ClassList/>

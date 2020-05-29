@@ -1,10 +1,11 @@
 import React from 'react';
-import {FaThumbsUp,} from 'react-icons/fa'  
+import {FaThumbsUp, FaDownload,} from 'react-icons/fa'  
 import {rdb} from '../firebase'
 import './list.css'
 import ListItem from './listItem';
-import MyShimmer from '../AppComponents/Shimmer.js';
 import Image, { Shimmer } from 'react-shimmer'
+import Typography from '@material-ui/core/Typography';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 var length;
 var lat
@@ -54,7 +55,7 @@ var lat
           var words = snapshot.val();
           length = snapshot.numChildren()
           var newState = [];
-          console.log(words)
+          
           for(var i = 0; i<length-1; i++){
             for(var j = 0; j <length-1-i; j++){
               var distance1 = this.calculateDistance(this.state.latitude, this.state.longitude, words[j].lat, words[j].lon)
@@ -73,8 +74,23 @@ var lat
       }
       
       render(){
-        if(this.state.latitude==0||this.state.words==null){
-          return <Shimmer width={900} height={600} />
+        if(length==null){
+          return <div>
+                    <div style={{backgroundColor:'#E6E6E6'}}>
+                        <div class='number'><FaDownload size='12' style={{marginRight:'5px'}}/> Please Wait...</div>
+                          <div style={{padding:'5px',maxWidth:'100%'}} >
+                            <div style={{borderRadius:'10px',backgroundColor:'white',padding:'20px'}} >
+                              <Skeleton variant="rect" width="100%" height={200}  />
+                              <Typography variant="h3">
+                                <Skeleton />
+                              </Typography>
+                              <Typography variant="h5">
+                                <Skeleton />
+                              </Typography>
+                            </div>
+                          </div>
+                      </div>
+                </div>
         }
         else{
           return(

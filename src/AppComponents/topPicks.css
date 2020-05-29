@@ -35,12 +35,14 @@
     height: 18px;
     background-repeat: no-repeat;
     background-image: url(https://firebasestorage.googleapis.com/v0/b/pidgin-ds.appspot.com/o/app_resources%2Fclasses_section%2Fribbon.png?alt=media&token=67c5165e-d019-4cd6-9403-a467a764fad3);
+    padding-bottom: 10px;
 }
 .namePick{
     text-align: center;
     font-size: small;
     color: #043540;
     font-weight: 500;
+    background-color: transparent;
 }
 @media only screen and (min-width:620px) {
 	.responsive{

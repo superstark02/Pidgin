@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css';
-import {FaMapMarkerAlt, FaChalkboardTeacher, FaPencilRuler, FaInfoCircle,FaArrowLeft, FaChevronDown, FaClock, FaGlobe, FaStopwatch, FaCalendar, FaFemale, FaUser, FaUsers, FaChevronLeft} from 'react-icons/fa';
+import {FaMapMarkerAlt, FaChalkboardTeacher, FaPencilRuler, FaInfoCircle,FaArrowLeft, FaChevronDown, FaClock, FaGlobe, FaStopwatch, FaCalendar, FaFemale, FaUser, FaUsers, FaChevronLeft, FaGraduationCap} from 'react-icons/fa';
 import ReactAvatar from 'react-avatar';
 import Slide from '@material-ui/core/Slide';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -12,6 +12,7 @@ import trial from '../Images/trial.png'
 import {motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Dialog } from '@material-ui/core';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 var title
 var name
@@ -41,7 +42,8 @@ class ClassesDisplay extends React.Component{
     courseName:'',
     courseImage:'',
     courseFees:'',
-    courseDetails:''
+    courseDetails:'',
+    docId:''
   }
 
   constructor(){
@@ -125,11 +127,13 @@ goBack(){
       })
 
       const courses = db.collection('Classes').doc(name).collection('Courses');    
+      const add = db.collection('Classes').doc(name).collection('Courses');
       courses.get()
       .then(snapshot=>{
         const courses = []
         snapshot.forEach(doc=>{
           const data = doc.data()
+          add.doc(doc.id).update({id:doc.id})
           courses.push(data)
         })
         this.setState({courses:courses})
@@ -161,6 +165,7 @@ goBack(){
     const pageVariants ={
       initial:{
           opacity: 0, 
+          y:'-100%'
       },
       in:{
           opacity:1,
@@ -168,7 +173,7 @@ goBack(){
       },
       out:{
           opacity: 0,
-          y:'100%'
+          y:'200%'
       }
   }
 
@@ -177,29 +182,35 @@ goBack(){
   }
     
     return (
-        <motion.div initial='out' animate='in' exit='out' variants={pageVariants} transition={pageTransitions}
+        <motion.div initial='initial' animate='in' exit='out' variants={pageVariants} transition={pageTransitions}
           style={{backgroundColor:'white',position:'absolute',zIndex:'300',maxWidth:'100%',width:'100%'}}>
         <div class='overlayContainer'>
         {
           this.state.classes&&
           this.state.classes.map(classes=>{
             return(
-              <div class='carouselContainer'> 
+              <div class='carouselContainer' style={{height:'250px'}} > 
                 {
                   this.state.images&&
                   this.state.images.map(image=>{
-                  return(
-                          <img src={image.item} height='250px' width='auto' class='imageCarousel'/>        
-                        )
+                    if(image==null){
+                      return(
+                        <Skeleton variant="rect" width={210} height={250} />
+                      )
+                    }
+                    else{
+                      return(
+                        <div class="w3-animate-zoom"><img src={image.item} height='250px' width='auto' class='imageCarousel'/></div>
+                      )
+                    }
                   })
                 }       
               </div>    
             )
           })
         }
-        <div class='overlayBlack'><Link to='/' ><button style={{backgroundColor:'transparent',paddingLeft:'0px',paddingTop:'0px'}}
-           onClick={this.goBack} >
-          <FaArrowLeft color='#FFFF' size='20' class='backIcon'/></button></Link></div>
+        <div class='overlayBlack'>
+          <FaArrowLeft color='#FFFF' size='20' class='backIcon' onClick={this.goBack} /></div>
         </div>
         <div>
         {
@@ -287,8 +298,9 @@ goBack(){
         </div>
         </div>
 
-        
-        <div class='carouselContainer' >
+        <hr color="#E6E6E6" ></hr>
+        <div class='displaySubtitle2'><FaGraduationCap color='#043540' size='20' style={{margin:'10px',marginTop:'0px'}}/>  Courses</div>
+        <div class='courseDisplay'>
         {
           this.state.courses&&
           this.state.courses.map(course=>{
@@ -300,17 +312,22 @@ goBack(){
                    title: course.title,
                    price: course.price,
                    image: course.image,
-                   details: course.details,
                    name: this.props.location.state.name,
+                   id:this.props.location.state.docName,
+                   docId:course.id,
                  }
                }}>
-                <div class='classCard'>
-                    <ReactAvatar src={course.image} round='50%' size='60'/><br/>
-                    <hr color='#E6E6E6' size='0.5' ></hr>
-                    <div class='courseItem' >{course.title}</div>
-                    <div style={{color:'#043540'}} >&#8377; {course.price}</div>
-                    <div style={{color:'#043540',fontSize:'10px'}}>More details</div>
-                  </div>
+                <div class="displayContainer">
+                  {course.title}<br/>&#8377;{course.price}
+
+                   <div style={{display:'flex',justifyContent:'space-between',flexDirection:'row'}}>
+                      <div class='bottom' ><i class="fa fa-chevron-right"></i></div>
+
+                      <div class="w3-card" style={{borderRadius:'50%',width:'60px',alignSelf:'flexEnd'}} >
+                        <ReactAvatar src={course.image} round='50%' size='60'/>
+                      </div>
+                   </div>
+                </div>
                </Link>
                 <div style={{width:'40px'}}></div>
               </div>

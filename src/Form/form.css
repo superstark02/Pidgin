@@ -26,14 +26,16 @@
 }
 button{
     padding: 10px 10px;
-    margin: 10px 0px;
-    background-color: #04BF7B;
+    margin: 10px 5px;
+    border-radius: 4px;
+    background-color: white;
     border: none;
+    box-shadow: none;
 }
 .clientInput{
     font-size: 13px;
     padding: 10px;
-    width: 70%;
+    width: 100%;
     border-radius: 5px;
     border: none;
     margin: 5px;

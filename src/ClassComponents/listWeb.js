@@ -4,8 +4,6 @@ import {rdb} from '../firebase'
 import './list.css'
 import ListItemWeb from './listItemWeb';
 
-import Shimmer from '../AppComponents/Shimmer.js'
-
 var length;
 var lat
   class ClassListWeb extends React.Component{
@@ -73,7 +71,7 @@ var lat
       
       render(){
         if(this.state.latitude == 0||this.state.words==null){
-          return <Shimmer></Shimmer>
+          return <div></div>
         }
         else{
           return(

@@ -1,7 +1,10 @@
 .image{
     margin: 0px;
-    width: 100%;
+    width: 70%;
     height: auto;
+    text-align: left;
+    margin: 10px;
+    border-radius: 5px;
 }
 .coverCarousel{
     max-width: 100%;

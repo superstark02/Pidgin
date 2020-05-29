@@ -15,6 +15,7 @@ import Course from './ClassComponents/course';
 import { AnimatePresence} from 'framer-motion';
 import history from "./history";
 import ClientForm from './Form/clientForm';
+import Adapter from './Form/editCourse';
 
 class App extends React.Component{
 
@@ -30,6 +31,7 @@ class App extends React.Component{
           <Route exact path='/course' component={Course} ></Route>
           <Route exact path='/find' component={Demo} ></Route>
           <Route exact path='/classDisplay' component={ClassesDisplay} ></Route>
+          <Route exact path='/courseEdit' component={Adapter} ></Route>
           <Route exact path='/' component={withRouter(ClassPage)} ></Route>
           <Route exact path='/:id' component={ClientForm}></Route>
         </Switch>

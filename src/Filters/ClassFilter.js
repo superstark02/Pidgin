@@ -1,5 +1,5 @@
 import React from 'react'
-import {FaArrowLeft, FaSearch} from 'react-icons/fa'
+import {FaArrowLeft, FaSearch, FaHeart} from 'react-icons/fa'
 import TopPicks from '../AppComponents/topPicks.js'
 import './ClassFilter.css'
 import { Link } from 'react-router-dom'
@@ -7,7 +7,6 @@ import {db,rdb} from '../firebase'
 import {FaMap, FaSnapchat} from 'react-icons/fa'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner'
-
 
 class SearchView extends React.Component{
     state = {
@@ -42,6 +41,9 @@ class SearchView extends React.Component{
             })
             this.setState({classes:images})
           })
+          if(this.props.location.type!=null){
+              this.setState({search:this.props.location.type})
+          }
       }
 
     updateSearch(event){
@@ -71,21 +73,20 @@ class SearchView extends React.Component{
         }
 
         return(
-            <div>
+            <div style={{position:'absolute',zIndex:'200',minHeight:'800px',backgroundColor:'white',width:'100%'}}>
                 <div style={{display:'flex', padding:'5px 10px',maxWidth:'100%'}}>
                 <div style={{marginRight:'10px',alignSelf:'center'}} >
-                <Link to='/'>
-                <button style={{backgroundColor:'transparent',paddingLeft:'5px',paddingTop:'15px',paddingRight:'0px'}} 
+                <div style={{backgroundColor:'transparent',paddingLeft:'5px',paddingTop:'15px',paddingRight:'0px'}} 
                     onClick={this.goBack}>
                         <FaArrowLeft size='20' color='grey' />
-                </button>
-                    </Link>
+                </div>
+                    
                 </div>
                     <input placeholder={"Search classes, subjects, gyms..."} class='searchInput' value={this.state.search}
                     onChange={this.updateSearch.bind(this)} onSubmit={this.updateSearch.bind(this)}/>
                 </div>
-                <TopPicks/>
-                <div style={{backgroundColor:'#E6E6E6'}}> 
+
+                <div style={{backgroundColor:'#E6E6E6',padding:'5px',width:'100%',maxWidth:'100%'}}> 
                     {
                         filteredClass&&
                         filteredClass.map(classes=>{
@@ -105,34 +106,34 @@ class SearchView extends React.Component{
                                 }
                               }}>
                             
-                            <div class='item'>
+                            <div class='item' style={{width:'auto'}}>
                                 <div class='showImage'>
-                                <img src={classes.i1} height='200px' style={{marginRight:'2px'}}></img>
-                                <img src={classes.i2} height='200px' style={{marginRight:'2px'}}></img>
-                                <img src={classes.i3} height='200px' style={{marginRight:'2px'}}></img>
+                                    <img src={classes.i1} height='200px' style={{marginRight:'2px'}}></img>
+                                    <img src={classes.i2} height='200px' style={{marginRight:'2px'}}></img>
+                                    <img src={classes.i3} height='200px' style={{marginRight:'2px'}}></img>
                                 </div>
                                 <div style={{display:'flex',position:'absolute',zIndex:'50'}} >
-                                <div class='age'>
-                                    Age: {classes.age}+
-                                </div>
+                                    <div class='age'>
+                                        Age: {classes.age}+
+                                    </div>
                                 <div class='newType' >
                                     {classes.type}
                                 </div>
                                 </div>
                                 <div class='container'>
-                                <div class='name'>{classes.name}</div>
+                                    <div class='name'>{classes.name}</div>
                                     <div class='map'>
-                                    <a href={classes.location}><FaMap size='15'color='#04BFBF' /></a>
-                                    <div>Map</div>
+                                        <a href={classes.location}><FaMap size='15'color='#04BFBF' /></a>
+                                        <div>Map</div>
                                     </div>
                                 </div>
                                 
                                     <div class='type'>
-                                    {classes.adress}
+                                        {classes.adress}
                                     </div>
-                                    <hr color='#E6E6E6'></hr>
+                                        <hr color='#E6E6E6'></hr>
                                     <div class='fees'>
-                                    <div>Starting Fees  &#8377;{classes.fees}</div>
+                                        <div>Starting Fees  &#8377;{classes.fees}</div>
                                     </div> 
                             </div>
             
