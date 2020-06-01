@@ -7,6 +7,7 @@ import {db,rdb} from '../firebase'
 import {FaMap, FaSnapchat} from 'react-icons/fa'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 class SearchView extends React.Component{
     state = {
@@ -18,16 +19,17 @@ class SearchView extends React.Component{
         this.state = {
             search:''
         };
+        this.handleChange = this.handleChange.bind(this)
         this.goBack = this.goBack.bind(this);
     }
+
     goBack(){
         this.props.history.goBack();
-    }
-    
+      }
 
-    home = () => {
-        this.goBack();
-          };
+    handleChange = (id) => {
+        window.Android.openFragment(id)
+      }
 
     componentDidMount(){
         const data = db.collection('Classes');    
@@ -36,7 +38,6 @@ class SearchView extends React.Component{
             const images = []
             snapshot.forEach(doc=>{
               const data = doc.data()
-              
               images.push(data)
             })
             this.setState({classes:images})
@@ -66,19 +67,18 @@ class SearchView extends React.Component{
                     color="#043540"
                     height={30}
                     width={30}
-                    timeout={1000} //3 secs
-            
+                    timeout={1000} 
                 />
             </div>
         }
 
         return(
             <div style={{position:'absolute',zIndex:'200',minHeight:'800px',backgroundColor:'white',width:'100%'}}>
-                <div style={{display:'flex', padding:'5px 10px',maxWidth:'100%'}}>
+                <div style={{display:'flex', padding:'5px 5px',maxWidth:'100%'}}>
                 <div style={{marginRight:'10px',alignSelf:'center'}} >
-                <div style={{backgroundColor:'transparent',paddingLeft:'5px',paddingTop:'15px',paddingRight:'0px'}} 
-                    onClick={this.goBack}>
-                        <FaArrowLeft size='20' color='grey' />
+                <div style={{backgroundColor:'transparent',paddingLeft:'5px',paddingTop:'10px',paddingRight:'0px'}} 
+                    >
+                        <ArrowBackIcon fontSize='10px' style={{margin:'10px'}} onClick={this.goBack} />
                 </div>
                     
                 </div>
@@ -91,53 +91,38 @@ class SearchView extends React.Component{
                         filteredClass&&
                         filteredClass.map(classes=>{
                         return(
-                            
-                            <Link to={{
-                                pathname:'/classDisplay',
-                                state:{
-                                  docName: classes.id,
-                                  name: classes.name,
-                                  location: classes.location,
-                                  uid: classes.uid,
-                                  type: classes.type,
-                                  woman: classes.woman,
-                                  online: classes.online,
-                                  address: classes.adress
-                                }
-                              }}>
-                            
                             <div class='item' style={{width:'auto'}}>
-                                <div class='showImage'>
+                                <div class='showImage'onClick={()=>this.handleChange(classes.id)} >
                                     <img src={classes.i1} height='200px' style={{marginRight:'2px'}}></img>
                                     <img src={classes.i2} height='200px' style={{marginRight:'2px'}}></img>
                                     <img src={classes.i3} height='200px' style={{marginRight:'2px'}}></img>
                                 </div>
-                                <div style={{display:'flex',position:'absolute',zIndex:'50'}} >
+                                <div style={{display:'flex',position:'absolute',zIndex:'50'}} onClick={()=>this.handleChange(classes.id)} >
                                     <div class='age'>
                                         Age: {classes.age}+
                                     </div>
-                                <div class='newType' >
-                                    {classes.type}
-                                </div>
+                                    <div class='newType' >
+                                        {classes.type}
+                                    </div>
                                 </div>
                                 <div class='container'>
-                                    <div class='name'>{classes.name}</div>
+                                    <div class='name' onClick={()=>this.handleChange(classes.id)}  >{classes.name}</div>
                                     <div class='map'>
-                                        <a href={classes.location}><FaMap size='15'color='#04BFBF' /></a>
-                                        <div>Map</div>
+                                        <div>
+                                            <div><a href={this.state.location}><FaMap size='15'color='#04BFBF'/></a></div>
+                                            <div>Map</div>
+                                        </div>
                                     </div>
                                 </div>
                                 
-                                    <div class='type'>
+                                    <div class='type' onClick={()=>this.handleChange(classes.id)} >
                                         {classes.adress}
                                     </div>
                                         <hr color='#E6E6E6'></hr>
-                                    <div class='fees'>
+                                    <div class='fees' onClick={()=>this.handleChange(classes.id)} >
                                         <div>Starting Fees  &#8377;{classes.fees}</div>
                                     </div> 
                             </div>
-            
-                            </Link>
                             )
                         })
                     }

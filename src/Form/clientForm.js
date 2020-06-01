@@ -100,7 +100,7 @@ export default class ClientForm extends React.Component{
     render(){
         return(
             <div style={{backgroundColor:'white',position:'absolute',zIndex:'300',maxWidth:'100%',width:'100%'}} >
-                <Route path='/:id' component={Child}></Route>
+                <Route path='/clientForm/:id' component={Child}></Route>
             </div>
         )
     }

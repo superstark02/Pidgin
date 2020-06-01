@@ -1,10 +1,15 @@
 import React from 'react'
 import './categories.css'
 import {db} from '../firebase'
-import {FaStar, FaBolt, FaBoxes } from 'react-icons/fa';
+import {FaStar, FaBolt, FaBoxes, FaChevronCircleRight } from 'react-icons/fa';
 import Box from '@material-ui/core/Box';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { Link } from 'react-router-dom';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import IconButton from '@material-ui/core/IconButton';
 
 class Categories extends React.Component{
 
@@ -31,9 +36,6 @@ class Categories extends React.Component{
             return <div>
             <div>
                 <div class='topCat'>
-                    <div style={{paddingTop:'2px',marginRight:'5px'}}>
-                        <FaBoxes color='#043540' style={{marginTop:'0px'}}/>
-                        </div>
                     Search By Categories
                 </div>
                 <div class='containerCat' >
@@ -51,30 +53,30 @@ class Categories extends React.Component{
         return(
             <div>
                 <div>
-                    <div class='topCat'>
-                        <div style={{paddingTop:'2px',marginRight:'5px'}}>
-                            <FaBoxes color='#043540' style={{marginTop:'0px'}}/>
-                            </div>
-                        Search By Categories
-                    </div>
-                    <div class='containerCat'>
-                    {
-                        this.state.images&&
-                        this.state.images.map(images=>{
-                            return(
-                                <Link to={{
-                                    pathname:'/search',
-                                    type:images.type
-                                }} >
-                                <div class='avatarCat'>
-                                    <div class="w3-container w3-center w3-animate-zoom" style={{padding:'0px'}} ><img src={images.image} class='imageCat' /></div>
-                                </div>
-                                </Link>
-                            )
-                        })
-                    }
                    
-                    </div>
+                    <GridList cellHeight={110} style={{padding:'10px',backgroundColor:'white'}} cols={3}>
+                    <GridListTile key="Subheader" cols={3} style={{ height: 'auto' }}>
+                        <ListSubheader component="div">
+                            Search By Categories
+                        </ListSubheader>
+                    </GridListTile>
+                        {   this.state.images&&
+                            this.state.images.map((tile) => (
+                            <GridListTile key={tile.type} cols={tile.cols || 1}>
+                                <div class="w3-container w3-center w3-animate-zoom" style={{padding:'0px'}} >
+                                    <img src={tile.image} alt={tile.type}  height='130px' />
+                                </div>
+                                <GridListTileBar
+                                title={tile.type}
+                                actionIcon={
+                                    <IconButton>
+                                        <FaChevronCircleRight color='white' size='10' />
+                                    </IconButton>
+                                }
+                                />
+                            </GridListTile>
+                        ))}
+                    </GridList>
                 </div>
             </div>
         )

@@ -2,15 +2,18 @@ import React,{Component} from 'react';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { FaSchool,FaQuestionCircle, FaIcons } from 'react-icons/fa';
-import {Link, withRouter} from 'react-router-dom';
+import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
+import {Link, withRouter, Route} from 'react-router-dom';
+import Badge from '@material-ui/core/Badge';
 import history from './history'
 
 class SimpleBottomNavigation extends Component {
+
   state = {
     value: 1,
     pathMap: [
       '/school',
-      '/',
+      '/class',
       '/help',
     ]
   };
@@ -36,15 +39,15 @@ class SimpleBottomNavigation extends Component {
     const {value, pathMap} = this.state;
     return (
       <div class='device'>
-       <BottomNavigation
-        value={value}
-        onChange={this.handleChange}
-        showLabels
-      >
-        <BottomNavigationAction label="School" icon={<FaSchool/>} component={Link} to={pathMap[0]}/>
-        <BottomNavigationAction label="Classes" icon={<FaIcons />} component={Link} to={pathMap[1]} />
-        <BottomNavigationAction label="Help" icon={<FaQuestionCircle />} component={Link} to={pathMap[2]}/>
-      </BottomNavigation>
+          <BottomNavigation
+            value={value}
+            onChange={this.handleChange}
+            showLabels
+          >
+            <BottomNavigationAction label="School" icon={<FaSchool/>} component={Link} to={pathMap[0]}/>
+            <BottomNavigationAction label="Classes" icon={<FaIcons />} component={Link} to={pathMap[1]} />
+            <BottomNavigationAction label="Account" icon={<Badge badgeContent={4} variant="dot"  color="secondary"><AccountCircleOutlinedIcon/></Badge>} component={Link} to={pathMap[2]} />
+          </BottomNavigation>
       </div>
     );
   }

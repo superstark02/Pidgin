@@ -2,10 +2,9 @@
     max-width: 100%;
     overflow-x: scroll;
     display: flex;
-    padding: 10px;
-    padding-bottom: 40px;
-    padding-top: 0px;
-    background-color: white ;
+    padding: 20px 10px;
+    padding-left: 30px;
+    background-color: #eef5f8 ;
 }
 .avatarTop{
     border: 2px #E6E6E6 solid;
@@ -16,12 +15,11 @@
     background-color: white ;
 }
 .topPicks{
-    padding-right: 20px;
     display: flex;
-    padding: 10px;
+    padding: 10px 30px;
     color: grey;
     background-color: white ;
-    
+    font-size: 14px;
 }
 .ribbon{
     margin-left: 13px;

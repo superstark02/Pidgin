@@ -21,8 +21,7 @@ const StyledRating = withStyles({
 })(Rating);
 
 
-
-class ListItem extends React.Component{
+class MyListItem extends React.Component{
     state = {
         name:'',
         type:'',
@@ -35,7 +34,25 @@ class ListItem extends React.Component{
         i3:'',
         id:'',
         uid:'',
-        woman:false
+    }
+
+    constructor(){
+      super()
+      this.handleLike = this.handleLike.bind(this)
+      this.handleChange = this.handleChange.bind(this)
+    }
+
+    handleChange = () => {
+      window.Android.openFragment(this.state.id)
+    }
+
+    handleLike = ({id,name}) => {
+        if(this.props.uid!=null){
+          db.collection("Users").doc(this.props.uid).collection("Liked").doc(this.state.id).set({id:this.state.id, name:this.state.name})
+        }
+        else{
+          console.log('Sign In')
+        }
     }
 
     componentDidMount(){
@@ -50,10 +67,6 @@ class ListItem extends React.Component{
         var _i3 = ""
         var _id = ""
         var _age = ""
-        var _woman = false
-        var _online = false
-        var _uid = this.props.uid
-        this.setState({uid:_uid})
 
         data.get().then(snapshot=>{
             _name = snapshot.get('name')
@@ -66,9 +79,6 @@ class ListItem extends React.Component{
             _i2 = snapshot.get('i2')
             _i3 = snapshot.get('i3')
             _id = snapshot.get('id')
-
-            _woman = snapshot.get('women')
-            _online = snapshot.get('online')
             
             this.setState({name:_name})
             this.setState({type:_type})
@@ -80,9 +90,6 @@ class ListItem extends React.Component{
             this.setState({i3:_i3})
             this.setState({age:_age})
             this.setState({id:_id})
-
-            this.setState({woman:_woman})
-            this.setState({online:_online})
         })
     }
 
@@ -108,112 +115,66 @@ class ListItem extends React.Component{
         )
       }
         return (
-                <div class="w3-animate-zoom">
-                  <ButtonBase style={{textAlign:'left',maxWidth:'100%',width:'100%',padding:'0px 5px'}}>
-                    <div class='item'>
-                    <Link to={{
-                    pathname:'/classDisplay',
-                    state:{
-                      docName: this.state.id,
-                      name: this.state.name,
-                      location: this.state.location,
-                      uid: this.state.uid,
-                      type: this.state.type,
-                      woman: this.state.woman,
-                      online: this.state.online,
-                      address: this.state.adress
-                    }
-                  }}
-                  >
-                      
-                    <div class="w3-animate-opacity">
-                      <div class='showImage'>
-                      {this.state.i1 ? (
-                        <div class='alternateImg' ><img src={this.state.i1} height='200px' style={{marginRight:'2px'}}></img></div>
-                      ) : (
-                        <div><Skeleton variant="rect" width="100%" height={200}  /></div>
-                      )}
-                        <img src={this.state.i2} height='200px' style={{marginRight:'2px'}}></img>
-                        <img src={this.state.i3} height='200px' style={{marginRight:'2px'}}></img>
+              <div class="w3-animate-zoom">
+                <ButtonBase style={{textAlign:'left',maxWidth:'100%',width:'100%',padding:'0px 5px'}}>
+                  <div class='item'>
+
+                    <div class='showImage' onClick={this.handleChange}>
+                    {this.state.i1 ? (
+                      <div class='alternateImg' ><img src={this.state.i1} height='200px' style={{marginRight:'2px'}}></img></div>
+                    ) : (
+                      <div><Skeleton variant="rect" width="100%" height={200}  /></div>
+                    )}
+                      <img src={this.state.i2} height='200px' style={{marginRight:'2px'}}></img>
+                      <img src={this.state.i3} height='200px' style={{marginRight:'2px'}}></img>
+                    </div>
+
+                    <div style={{display:'flex',position:'absolute',zIndex:'50'}} >
+                      <div class='age'>
+                        Age: {this.state.age}+
+                      </div>
+                      <div class='newType' >
+                        {this.state.type}
                       </div>
                     </div>
 
-                    </Link>
-                      <div style={{display:'flex',position:'absolute',zIndex:'50'}} >
-                        <div class='age'>
-                          Age: {this.state.age}+
+                    <div class='container'>
+
+                      <div class='name' onClick={this.handleChange} >{this.state.name}</div>
+
+                      <div class='map'>
+
+                        <div>
+                          {/*<div style={{marginTop:'2px',marginRight:'10px'}} onClick={()=>this.handleLike(this.state.id,this.state.name)} >
+                              <StyledRating
+                                defaultValue={0}
+                                precision={1}
+                                max={1}
+                                icon={<FavoriteIcon fontSize="inherit" />}
+                              />
+                          </div>*/}
                         </div>
-                        <div class='newType' >
-                          {this.state.type}
+                        <div>
+                          <div><a href={this.state.location}><FaMap size='15'color='#04BFBF'/></a></div>
+                          <div>Map</div>
                         </div>
+
                       </div>
-                        <div class='container'>
-
-                      <Link to={{
-                        pathname:'/classDisplay',
-                        state:{
-                          docName: this.state.id,
-                          name: this.state.name,
-                          location: this.state.location,
-                          uid: this.state.uid,
-                          type: this.state.type,
-                          woman: this.state.woman,
-                          online: this.state.online,
-                          address: this.state.adress
-                        }
-                      }}
-                      >
-                        <div class='name'>{this.state.name}</div>
-                      </Link>
-
-                          <div class='map'>
-
-                            <div>
-                              {/*<div style={{marginTop:'2px',marginRight:'10px'}} >
-                                  <StyledRating
-                                    defaultValue={0}
-                                    precision={1}
-                                    max={1}
-                                    icon={<FavoriteIcon fontSize="inherit" />}
-                                  />
-                              </div>*/}
-                            </div>
-
-                            <div>
-                              <a href={this.state.location}><FaMap size='15'color='#04BFBF' /></a>
-                              <div>Map</div>
-                            </div>
-
-                          </div>
-                        </div>
-                        
-                        <Link to={{
-                          pathname:'/classDisplay',
-                          state:{
-                            docName: this.state.id,
-                            name: this.state.name,
-                            location: this.state.location,
-                            uid: this.state.uid,
-                            type: this.state.type,
-                            woman: this.state.woman,
-                            online: this.state.online,
-                            address: this.state.adress
-                          }
-                        }}
-                        >
-                          <div class='type'>
-                            {this.state.adress}
-                          </div>
-                          <hr color='#E6E6E6' style={{margin:'5px 0px'}} ></hr>
-                          <div class='fees'>
-                            <div>Starting Fees  &#8377;{this.state.fees}</div>
-                          </div>
-                        </Link>
-                        
                     </div>
-                    </ButtonBase> 
+                        
+                    
+                    <div class='type' onClick={this.handleChange}>
+                      {this.state.adress}
+                    </div>
+                    <hr color='#E6E6E6' style={{margin:'5px 0px'}} ></hr>
+                    <div class='fees'>
+                      <div onClick={this.handleChange} >Starting Fees  &#8377;{this.state.fees}</div>
+                    </div>
+                        
+                  </div>
+                  </ButtonBase> 
                 </div>
         )
     }
 }
-export default ListItem;
+export default MyListItem;

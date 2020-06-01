@@ -18,6 +18,7 @@
 	max-width: 100%;
 	width: 100%;
 	opacity:1;
+	color: white;
 }
 .overlayContainer {
 	position: relative;
@@ -27,15 +28,15 @@
 .backIcon{
 	margin-top: 20px;
 	margin-left: 20px;
+	color: #FFFF;
 }
 .displayTitle{
 	margin: 10px 10px;
 	max-width: 100%;
-	font-weight: 500;
+	font-weight: 600;
 	color: #043540;
 	align-self: center;
-
-	font-size: 23px;
+	font-size: 16px;
 	display: flex;
 }
 .mapIcon{
@@ -114,7 +115,7 @@
 .displayAge{
 	background-color: #58f73b;
 	padding: 5px;
-    width: 50px;
+    width: auto;
     color: white;
     font-size: 10px;
 	border-radius: 3px;

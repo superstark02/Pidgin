@@ -2,9 +2,9 @@ import React, { Fragment } from 'react'
 import {FaSearch,FaFilter} from 'react-icons/fa';
 import './AppBar.css'
 import { Link } from 'react-router-dom';
+import Geocode from "react-geocode";
 
 class MyAppBar extends React.Component{
-
     render() {
         return (
           <Fragment>

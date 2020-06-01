@@ -16,6 +16,7 @@ import { AnimatePresence} from 'framer-motion';
 import history from "./history";
 import ClientForm from './Form/clientForm';
 import Adapter from './Form/editCourse';
+import OnGoingClasses from './HelpComponents/OnGoingClasses.js'
 
 class App extends React.Component{
 
@@ -24,6 +25,7 @@ class App extends React.Component{
       <Router history={history}>
         <AnimatePresence>
         <Switch>
+          <Route exact path='/on_going' component={OnGoingClasses} ></Route>
           <Route exact path='/form' component={MyForm} ></Route>
           <Route exact path='/help' component={HelpPage} ></Route>
           <Route exact path='/school' component={SchoolPage} ></Route>
@@ -32,8 +34,8 @@ class App extends React.Component{
           <Route exact path='/find' component={Demo} ></Route>
           <Route exact path='/classDisplay' component={ClassesDisplay} ></Route>
           <Route exact path='/courseEdit' component={Adapter} ></Route>
-          <Route exact path='/' component={withRouter(ClassPage)} ></Route>
-          <Route exact path='/:id' component={ClientForm}></Route>
+          <Route exact path='/class' component={ClassPage} ></Route>
+          <Route exact path='/clientForm/:id' component={ClientForm}></Route>
         </Switch>
         </AnimatePresence>
         <BottomNav/>
