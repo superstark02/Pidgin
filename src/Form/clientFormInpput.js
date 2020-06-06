@@ -4,6 +4,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { Link } from 'react-router-dom';
+import temp from '../Images/buttonIcon.png'
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -14,7 +15,18 @@ export const ClientInput = ({spell,id}) => {
     const [image,setImage] = React.useState(spell.image);
     const [priceCourse,setpriceCourse] = React.useState(spell.price);
 
-    return <Link to={{
+    const handleInput = (e) => {
+        setpriceCourse(e.target.value)
+        db.collection("Classes").doc(id).collection("Courses").doc(spell.id).update({price:e.target.value})
+    }
+
+    const handleInputTitle = (e) => {
+        settitleCourse(e.target.value)
+        db.collection("Classes").doc(id).collection("Courses").doc(spell.id).update({title:e.target.value})
+    }
+
+    return <div style={{display:'flex',marginBottom:'20px'}}  >
+        {/*<Link to={{
                 pathname:'/courseEdit',
                 state:{
                     id:id,
@@ -23,21 +35,19 @@ export const ClientInput = ({spell,id}) => {
                     title:titleCourse,
                     price:priceCourse
                 }
-            }}>
-            <div style={{display:'flex'}}  >
+            }}>*/}
                 <div>
-                    <img src={image} width='50px' height='50px' style={{borderRadius:'50%'}} />
+                    <img src={temp} width='50px' height='50px' style={{borderRadius:'50%',marginTop:'15px'}} />
                 </div>
                 <div style={{marginLeft:'10px'}}>
-                    <div style={{fontSize:'14px',marginTop:'6px'}}>
-                        {titleCourse}
-                    </div>
+                    <div style={{fontSize:"10px",color:'grey'}} >Name Of the Course</div>
+                    <input value={titleCourse} onChange={(e)=>handleInputTitle(e)} />
                     <div>   
-                        <FormHelperText>Price: &#8377;{priceCourse}</FormHelperText>
+                        <div style={{fontSize:"10px",color:'grey'}} >Price:</div>
+                        &#8377;<input value={priceCourse} onChange={(e)=>handleInput(e)}/>
                     </div>
                 </div>
             </div>
-    </Link>
 }
 
 export const ClientInputNotes = ({spell,id}) => {

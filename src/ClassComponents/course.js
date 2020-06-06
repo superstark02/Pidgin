@@ -3,12 +3,16 @@ import {FaArrowLeft} from 'react-icons/fa';
 import {db} from '../firebase'
 import wa from '../Images/waButton.png'
 import Fab from '@material-ui/core/Fab';
-import { FormHelperText } from '@material-ui/core';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 export default class Course extends React.Component{
     
     state = {
-        details:null
+        details:null,
+        image:"",
+        price:"",
+        title:"",
+        name:""
     }
 
     constructor(){
@@ -17,7 +21,23 @@ export default class Course extends React.Component{
     }
 
     componentDidMount(){
-        const note = db.collection('Classes').doc(this.props.location.state.id).collection('Courses').doc(this.props.location.state.docId).collection('details')    
+        var docId = window.Android.getDocId()
+        var id = window.Android.getClassId()
+
+        const classes = db.collection('Classes').doc(id)
+        classes.get().then(snapshot=>{
+            this.setState({name:snapshot.get("name")})
+        })
+
+        const course = db.collection('Classes').doc(id).collection('Courses').doc(docId)
+        course.get()
+            .then(snapshot=>{
+                this.setState({title:snapshot.get("title")})
+                this.setState({price:snapshot.get("price")})
+                this.setState({image:snapshot.get("image")})
+            })
+
+        const note = db.collection('Classes').doc(id).collection('Courses').doc(docId).collection('details')    
         note.get()
         .then(snapshot=>{
             const details = []
@@ -30,24 +50,24 @@ export default class Course extends React.Component{
     }
 
     goBack(){
-        this.props.history.goBack();
+        window.Android.exit();
       }
     render(){
        
         return(
             <div style={{overflowY:'hidden'}} >
         <div class='overlayBlack'>
-            <FaArrowLeft color='#FFFF' size='20' class='backIcon' onClick={this.goBack} />
+            <ArrowBackIcon fontSize='10px' style={{margin:'15px'}} onClick={this.goBack}/>
         </div>
         <div  style={{width:'100%'}} >
-            <img src={this.props.location.state.image} style={{width:'100%'}} />
+            <img src={this.state.image} style={{width:'100%'}} />
         </div>
         
         <div style={{position:'absolute',top:'0',marginTop:'100px',backgroundColor:'white',width:'100%',
             borderRadius:'30px', padding:'10px',overflowY:'scroll',minHeight:'90%',zIndex:'500' }}>
             <div style={{borderRadius:'30px 30px 0px 0px',width:'100%',border:'solid 1px #043540',color:'#043540',padding:'10px'}} >
-                <div style={{textAlign:'center',fontSize:'16px'}} >{this.props.location.state.title}</div>
-                <div  style={{textAlign:'center',fontSize:'13px'}} >&#8377; {this.props.location.state.price}</div>
+                <div style={{textAlign:'center',fontSize:'16px'}} >{this.state.title}</div>
+                <div  style={{textAlign:'center',fontSize:'13px'}} >&#8377; {this.state.price}</div>
             </div>
             <hr color='#043540' size='4' ></hr>
             <div style={{fontFamily:'FiraSansItalic'}} >What you will learn...</div>
@@ -62,12 +82,6 @@ export default class Course extends React.Component{
                     })
             }      
                 </ol>
-            <a href={'https://wa.me/919910197196?text=I%20would%20like%20to%20join%20'+this.props.location.state.name+'%20with%20'+this.props.location.state.title+'%20course.'} >
-            <Fab variant="extended" style={{position:'fixed',bottom:'0',backgroundColor:'white',right:'0',margin:'20px'}}>
-                <img src={wa} width='30px' style={{marginRight:'5px'}} />
-                ENROLL
-            </Fab> 
-            </a> 
             </div>
         </div>
     </div>

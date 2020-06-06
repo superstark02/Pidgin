@@ -19,7 +19,7 @@
     padding: 10px 30px;
     color: grey;
     background-color: white ;
-    font-size: 14px;
+    font-size: 17px;
 }
 .ribbon{
     margin-left: 13px;
@@ -42,7 +42,7 @@
     font-weight: 500;
     background-color: transparent;
 }
-@media only screen and (min-width:620px) {
+@media only screen and (min-width:1136px) {
 	.responsive{
         display: none;
     }

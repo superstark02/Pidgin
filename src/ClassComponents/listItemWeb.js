@@ -72,7 +72,7 @@ class ListItem extends React.Component{
     render(){
         return (
                 <div class='item'>
-                <div style={{width:'500px'}} >
+                <div style={{width:'40%'}} >
                     <Carousel
                         slidesPerPage={1}
                         arrows

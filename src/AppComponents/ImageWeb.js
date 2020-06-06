@@ -5,9 +5,9 @@ class ImagesWeb extends React.Component{
     render(){
         return(
            <div>
-               <img src='' alt='Image' class='appImage' />
            </div>
         )
     }
 }
+
 export default ImagesWeb;

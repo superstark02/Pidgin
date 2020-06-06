@@ -1,46 +1,58 @@
-import React from "react";
-import { geolocated } from "react-geolocated";
- 
-class Demo extends React.Component {
-    render() {
-        return !this.props.isGeolocationAvailable ? (
-            <div>Your browser does not support Geolocation</div>
-        ) : !this.props.isGeolocationEnabled ? (
-            <div>Geolocation is not enabled</div>
-        ) : this.props.coords ? (
-            <table>
-                <tbody>
-                    <tr>
-                        <td>latitude</td>
-                        <td>{this.props.coords.latitude}</td>
-                    </tr>
-                    <tr>
-                        <td>longitude</td>
-                        <td>{this.props.coords.longitude}</td>
-                    </tr>
-                    <tr>
-                        <td>altitude</td>
-                        <td>{this.props.coords.altitude}</td>
-                    </tr>
-                    <tr>
-                        <td>heading</td>
-                        <td>{this.props.coords.heading}</td>
-                    </tr>
-                    <tr>
-                        <td>speed</td>
-                        <td>{this.props.coords.speed}</td>
-                    </tr>
-                </tbody>
-            </table>
-        ) : (
-            <div>Getting the location data&hellip; </div>
-        );
-    }
+import React from 'react';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import { FixedSizeList } from 'react-window';
+import Geocode from "react-geocode";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    height: 400,
+    maxWidth: 300,
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
+
+function renderRow({props}) {
+
+  return (
+    <ListItem button>
+      hey{props}
+    </ListItem>
+  );
 }
- 
-export default geolocated({
-    positionOptions: {
-        enableHighAccuracy: false,
-    },
-    userDecisionTimeout: 5000,
-})(Demo);
+
+renderRow.propTypes = {
+  index: PropTypes.number.isRequired,
+  style: PropTypes.object.isRequired,
+};
+
+export default class VirtualizedList extends React.Component {
+
+  componentDidMount(){
+    Geocode.setApiKey("AIzaSyCYoIBWm4Hw6kCP1P6jPWvqgJsXQdFmuPM");
+    Geocode.setLanguage("en");
+    Geocode.setRegion("in");
+    Geocode.enableDebug();
+
+    Geocode.fromLatLng("48.8583701", "2.2922926").then(
+      response => {
+        const address = response.results[0].formatted_address;
+        console.log(address);
+      },
+      error => {
+        console.error(error);
+      }
+    );
+  }
+
+  render(){
+    return(
+      <div>
+        Hello
+      </div>
+    )
+  }
+}

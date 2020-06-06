@@ -45,6 +45,7 @@
 }
 .fees{
     margin: 10px 10px;
+    margin-bottom: 0px;
     font-weight: 500;
     font-size: 13px;
     color: #043540;
@@ -135,7 +136,7 @@
 	src: local('MyFont'), url(../fonts/abeezee/ABeeZee-Regular.ttf) format('ttf');
   }
 
-@media only screen and (min-width:620px) {
+@media only screen and (min-width:1136px) {
     .item{
         width: 100%;
         height: auto;

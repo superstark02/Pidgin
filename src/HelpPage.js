@@ -14,6 +14,9 @@ import icon from './Images/listIcon.png'
 import Button from '@material-ui/core/Button';
 import { db } from './firebase'
 import iconB from './Images/buttonIcon.png'
+import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
+import { Box } from '@material-ui/core';
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 
 function myFunction () {
     window.Android.verification();
@@ -64,17 +67,10 @@ class HelpPage extends React.Component{
 
         return(
             <div>
-                <div class='title'>
-                        <div class='orange'>
-                            <div style={{marginBottom:'10px',fontSize:'20px'}}>
-                                HELP
-                            </div>
-                        </div>
-                </div>
-
+                <Box boxShadow={3} >
                 <ListItem alignItems="flex-start" button >
                     <ListItemAvatar>
-                        <Avatar alt="UserImg" src={<FaUser/>} />
+                        <Avatar alt="UserImg" src={<FaUser/>}/>
                     </ListItemAvatar>
                     <ListItemText
                         primary={this.state.phone}
@@ -85,12 +81,13 @@ class HelpPage extends React.Component{
                             variant="body2"
                             color="textPrimary"
                         >
-                            e-mail id
+                            Sign In
                         </Typography>
                     </React.Fragment>
                 }
                     />
                 </ListItem>
+                </Box>
                 <Typography style={{fontSize:'12px',marginTop:'20px',color:'grey',marginLeft:'15px',marginBottom:'-10px'}}>Account</Typography>
                 <Divider variant="inset" />
                 <br/>
@@ -119,11 +116,19 @@ class HelpPage extends React.Component{
                     
                 </ListItem>
 
+                <ListItem alignItems="flex-end" button onClick={()=>this.openAnyActivity(this.state.phone,'https://pidgin-ds.web.app/notifications')} >
+                    <ListItemAvatar>
+                        <NotificationsNoneIcon fontSize='inherit' color='inherit' style={{color:'grey',marginLeft:'15px'}}/>
+                    </ListItemAvatar>
+                    <Typography style={{fontSize:'12px'}}>Notifications</Typography>
+                    
+                </ListItem>
+
                 <Typography style={{fontSize:'12px',marginTop:'20px',color:'grey',marginLeft:'15px',marginBottom:'-10px'}}>Team Up</Typography>
                 <Divider variant="inset" />
                 <br/>
                 
-                <ListItem alignItems="flex-end" button >
+                <ListItem alignItems="flex-end" button onClick={()=>this.openAnyActivity(this.state.phone,'https://pidgin-ds.web.app/enrollmentForm')}>
                     <ListItemAvatar>
                         <img src={icon} width='17px' height='17px' style={{marginLeft:'15px',marginTop:'-10px'}} />
                     </ListItemAvatar>
@@ -141,6 +146,13 @@ class HelpPage extends React.Component{
                     </ListItemAvatar>
                     <Typography style={{fontSize:'12px'}}>Help </Typography>
                     
+                </ListItem>
+
+                <ListItem alignItems="flex-end" button >
+                    <ListItemAvatar>
+                        <PowerSettingsNewIcon fontSize='inherit' color='inherit' style={{color:'grey',marginLeft:'15px'}} />
+                    </ListItemAvatar>
+                    <Typography style={{fontSize:'12px'}}>LogOut </Typography>
                 </ListItem>
 
             </div>

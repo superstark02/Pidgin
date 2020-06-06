@@ -1,7 +1,7 @@
 import React from 'react'
 import './categories.css'
 import {db} from '../firebase'
-import {FaStar, FaBolt, FaBoxes, FaChevronCircleRight } from 'react-icons/fa';
+import {FaChevronCircleRight } from 'react-icons/fa';
 import Box from '@material-ui/core/Box';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { Link } from 'react-router-dom';
@@ -10,6 +10,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
+import icon from '../Images/open-menu.png'
 
 class Categories extends React.Component{
 
@@ -36,6 +37,7 @@ class Categories extends React.Component{
             return <div>
             <div>
                 <div class='topCat'>
+                    <img src={icon} height='17px' width='17px' style={{marginTop:'3px',marginLeft:'-10px',marginRight:'10px'}} />
                     Search By Categories
                 </div>
                 <div class='containerCat' >
@@ -54,17 +56,18 @@ class Categories extends React.Component{
             <div>
                 <div>
                    
-                    <GridList cellHeight={110} style={{padding:'10px',backgroundColor:'white'}} cols={3}>
-                    <GridListTile key="Subheader" cols={3} style={{ height: 'auto' }}>
-                        <ListSubheader component="div">
-                            Search By Categories
-                        </ListSubheader>
-                    </GridListTile>
+                    <div class='topCat'>
+                        <img src={icon} height='17px' width='17px' style={{marginTop:'3px',marginLeft:'-10px',marginRight:'10px'}} />
+                        Search By Categories
+                    </div>
+                    <div style={{width:"100%"}} >
+                    <GridList cellHeight={100} style={{padding:'10px',backgroundColor:'white'}} cols={3}>      
                         {   this.state.images&&
                             this.state.images.map((tile) => (
                             <GridListTile key={tile.type} cols={tile.cols || 1}>
+                                <Link to={{pathname:'/search',type:tile.type}} > 
                                 <div class="w3-container w3-center w3-animate-zoom" style={{padding:'0px'}} >
-                                    <img src={tile.image} alt={tile.type}  height='130px' />
+                                <img src={tile.image} alt={tile.type}  width='100%' />
                                 </div>
                                 <GridListTileBar
                                 title={tile.type}
@@ -74,9 +77,11 @@ class Categories extends React.Component{
                                     </IconButton>
                                 }
                                 />
+                                </Link>
                             </GridListTile>
                         ))}
                     </GridList>
+                    </div>
                 </div>
             </div>
         )

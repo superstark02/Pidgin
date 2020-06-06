@@ -4,6 +4,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { FaSchool,FaQuestionCircle, FaIcons } from 'react-icons/fa';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import {Link, withRouter, Route} from 'react-router-dom';
+import MusicNoteOutlinedIcon from '@material-ui/icons/MusicNoteOutlined';
 import Badge from '@material-ui/core/Badge';
 import history from './history'
 
@@ -44,9 +45,9 @@ class SimpleBottomNavigation extends Component {
             onChange={this.handleChange}
             showLabels
           >
-            <BottomNavigationAction label="School" icon={<FaSchool/>} component={Link} to={pathMap[0]}/>
-            <BottomNavigationAction label="Classes" icon={<FaIcons />} component={Link} to={pathMap[1]} />
-            <BottomNavigationAction label="Account" icon={<Badge badgeContent={4} variant="dot"  color="secondary"><AccountCircleOutlinedIcon/></Badge>} component={Link} to={pathMap[2]} />
+            <BottomNavigationAction label="Schools" icon={<FaSchool/>} component={Link} to={pathMap[0]}/>
+            <BottomNavigationAction label="Classes" icon={<MusicNoteOutlinedIcon />} component={Link} to={pathMap[1]} />
+            <BottomNavigationAction label="Account" icon={<AccountCircleOutlinedIcon/>} component={Link} to={pathMap[2]} />
           </BottomNavigation>
       </div>
     );

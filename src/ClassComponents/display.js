@@ -2,7 +2,7 @@ import React from 'react';
 import '../App.css';
 import {FaMapMarkerAlt, FaClock, FaGlobe, FaStopwatch, FaCalendar, FaFemale, FaUser, FaUsers, FaChevronLeft, FaGraduationCap} from 'react-icons/fa';
 import Slide from '@material-ui/core/Slide';
-import {db} from '../firebase'
+import {db, rdb} from '../firebase'
 import trial from '../Images/trial.png'
 import { Dialog, Button } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
@@ -15,14 +15,14 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import PropTypes from 'prop-types';
-import SwipeableViews from 'react-swipeable-views';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -68,7 +68,14 @@ var onlinecell;
 var women;
 var online;
 
+var cart;
+var cartButton;
+
 class ClassesDisplay extends React.Component{
+
+openAnyActivity = (phone,url) =>{
+  window.Android.openAnyActivity(phone,url);
+}
   
   state = {
     name: null,
@@ -84,6 +91,7 @@ class ClassesDisplay extends React.Component{
     online:false,
     address:'',
     type:'',
+    location:"",
 
     courseId:'',
     courseName:'',
@@ -94,8 +102,16 @@ class ClassesDisplay extends React.Component{
 
     dialogTitle:'',
     dialogCourseId:'',
+    image:'',
 
     value:0,
+    trial:'course',
+    individual:'individual',
+    time:'',
+    on:'',
+
+    signed:false,
+    showCart:false,
   }
 
   constructor(){
@@ -106,29 +122,71 @@ class ClassesDisplay extends React.Component{
    this.exit = this.exit.bind(this)
    this.handleAdd = this.handleAdd.bind(this)
    this.handleClose = this.handleClose.bind(this)
-   this.handleChangeIndex = this.handleChangeIndex.bind(this)
+   this.myFunction = this.myFunction.bind(this)
+   this.handleCart = this.handleCart.bind(this)
+   this.openAnyActivity = this.openAnyActivity.bind(this)
 }
 
 exit = () => {
   window.Android.exit();
 }
-handleAdd = (courseId,title) => {
- this.setState({open:true,dialogCourseId:courseId,dialogTitle:title})     
+handleAdd = (courseId,title,price,image) => {
+ this.setState({open:true,dialogCourseId:courseId,dialogTitle:title,courseFees:price,image:image})     
 }
 handleClose = () => {
   this.setState({open:false})     
  }
 
-handleChangeIndex = (index) => {
-  this.setState({value:index});
-};
-
 handleChange = (event, newValue) => {
   this.setState({value:newValue});
 };
+
+
+
+handleTrial = (event) => {
+  this.setState({trial:event.target.value})
+}
+handleIndividual = (event) => {
+  this.setState({individual:event.target.value})
+}
+handleTime = (event) => {
+  this.setState({time:event.target.value})
+}
+handleOnline = (event) => {
+  this.setState({online:event.target.value})
+}
+
+handleCart = (name,fees,online,timing,individual,trial,image) => {
+  if(this.state.signed!=null){
+    rdb.ref().child("Users").child(this.state.signed).child("Cart").child(name).set({
+      name:name,
+      price:fees,
+      online:online,
+      timing:timing,
+      individual:individual,
+      trial:trial,
+      image:image,
+    })
+    this.setState({showCart:true})
+  }
+  else{
+    window.Android.verification();
+  }
+  this.setState({open:false})
+}
+
+myFunction = (docId) => {
+  window.Android.openAnySubActivity(this.state.id, docId, "https://pidgin-ds.web.app/course")
+}
   componentDidMount(){
-    name = 'CookeryExpressions'//window.Android.getClassId();
+    name = window.Android.getClassId();
     this.setState({id:name})
+    const id = window.Android.getId()
+    const check = db.collection("DeviceId").doc(id)
+      check.get().then(snapshot=>{
+        this.setState({signed:snapshot.get("id")})
+      })
+
     const data = db.collection('Classes').doc(name);    
      data.get()
       .then(snapshot=>{
@@ -138,6 +196,7 @@ handleChange = (event, newValue) => {
           this.setState({online:snapshot.get('online')})
           this.setState({address:snapshot.get('address')})
           this.setState({type:snapshot.get('type')})
+          this.setState({location:snapshot.get('location')})
       })
 
     const images = db.collection('Classes').doc(name).collection('Images');    
@@ -221,7 +280,16 @@ handleChange = (event, newValue) => {
     if(women){
       womenCell = <td><FaFemale color='#353535' style={{marginBottom:'-2px',marginRight:'5px'}}/> Only For Woman</td>
     }
-    
+
+    if(this.state.showCart){
+      cartButton = <div style={{position:'fixed',bottom:'0',width:'100%',padding:'10px',zIndex:'700'}} >
+        <Button onClick={()=>this.openAnyActivity(this.state.signed,"https://pidgin-ds.web.app/cart")} 
+          style={{backgroundColor:"#043540",width:'100%',color:'white',fontWeight:'300',margin:'0px',padding:'10px 0px'}} >
+          SHOW CART
+        </Button>
+      </div>
+    }
+
     return (
         <div style={{backgroundColor:'white',position:'absolute',zIndex:'300',maxWidth:'100%',width:'100%'}}>
         <div class='overlayContainer'>
@@ -253,7 +321,7 @@ handleChange = (event, newValue) => {
         <div class='displayTitle'>
           {this.state.name}
           <div class='mapIcon'>
-            <FaMapMarkerAlt color='#043540'/>
+            <a href={this.state.location} ><FaMapMarkerAlt color='#043540'/></a>
             <div style={{fontSize:'10px'}} >Map</div>
           </div>
         </div>      
@@ -333,19 +401,19 @@ handleChange = (event, newValue) => {
                 this.state.courses&&
                 this.state.courses.map(course=>{
                   return(
-                    <ListItem style={{padding:'0px 15px'}} >
+                    <ListItem button style={{padding:'0px 15px'}} >
                       <div style={{display:'flex',margin:'10px 0px'}} >
                         <div>
                           <img src={course.image} width='70px' height='70px' style={{borderRadius:'10px'}} />
                         </div>
-                        <div style={{marginLeft:'10px'}} >
+                        <div style={{marginLeft:'10px'}} onClick={()=>this.myFunction(course.id)} >
                           <div style={{color:'#043540',fontFamily:'FiraSans',fontSize:'13px',maxWidth:'76%'}} >{course.title}</div>
                           <div style={{color:'grey',fontSize:'11px'}}>&#8377; {course.price}</div>
                           <Divider/>
                            <div style={{fontSize:'8px',fontFamily:'sans-serif'}} >More Details <i class="fa fa-chevron-right" style={{fontSize:'5px',marginTop:'10px'}}></i></div>
                         </div>
                         <div style={{alignContent:'center',marginLeft:'auto', paddingLeft:'5px',right:'0',position:'absolute'}} >
-                          <Button onClick={()=>this.handleAdd(course.id,course.title)}
+                          <Button onClick={()=>this.handleAdd(course.id,course.title,course.price,course.image)}
                             variant="outlined" color="secondary" style={{borderRadius:'5px',fontSize:'8px',padding:'5px 0px'}}>
                               + ADD
                           </Button>
@@ -387,53 +455,72 @@ handleChange = (event, newValue) => {
               }
             </ul>
           </li>
+          <div style={{width:'100%',textAlign:'center',color:'lightgrey',fontSize:'10px',marginBottom:'10px'}} >
+              Pidgin
+          </div>
         </List>
-        <div style={{height:'60px'}} ></div>
+        
         <Dialog
           open={this.state.open}
           TransitionComponent={Transition}
           keepMounted
+          fullScreen
+          scroll='paper'
           onClose={this.handleClose}
+          style={{top:'30%',borderRadius:'10px'}}
         >
           <DialogTitle id="alert-dialog-slide-title" ><div  style={{fontSize:'12px'}}>{this.state.dialogTitle}</div></DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-slide-description">
-            <AppBar position="static" color="default">
-              <Tabs
-                value={this.state.value}
-                onChange={this.handleChange}
-                indicatorColor="primary"
-                textColor="primary"
-                variant="fullWidth"
-              >
-                <Tab label="Individual Classes" {...a11yProps(0)} />
-                <Tab label="Group Classes" {...a11yProps(1)} />
-              </Tabs>
-            </AppBar>
+                <FormControl component="fieldset" style={{marginBottom:'10px',marginTop:'5px'}} >
+                  <FormLabel component="legend">Individual/Group Classes</FormLabel>
+                  <RadioGroup value={this.state.trial} onChange={this.handleIndividual}>
+                    <FormControlLabel value='Individual Classes' control={<Radio />} label="Individual" />
+                    <FormControlLabel value='Group Classes' control={<Radio />} label="Group" />
+                  </RadioGroup>
+                </FormControl>
 
-            <SwipeableViews
-              index={this.state.value}
-              onChangeIndex={this.handleChangeIndex}
-            >
-              <TabPanel value={this.state.value} index={0}>
-                Item One
-              </TabPanel>
-              <TabPanel value={this.state.value} index={1}>
-                Item Two
-              </TabPanel>
-            </SwipeableViews>
+                <Divider/>
 
+                <FormControl component="fieldset" style={{marginBottom:'10px',marginTop:'10px'}}>
+                  <FormLabel component="legend">Course Type</FormLabel>
+                  <RadioGroup value={this.state.trial} onChange={this.handleTrial}>
+                    <FormControlLabel value='Trial Class' control={<Radio />} label="Trial Class" />
+                    <FormControlLabel value='Full Course' control={<Radio />} label="I want full course" />
+                  </RadioGroup>
+                </FormControl>
+
+                <Divider/>
+
+                <FormControl component="fieldset" style={{marginBottom:'10px',marginTop:'10px'}}>
+                  <FormLabel component="legend">Select Time Of The Class</FormLabel>
+                  <RadioGroup value={this.state.time} onChange={this.handleTime}>
+                    <FormControlLabel value='Time' control={<Radio />} label="Time" />
+                    <FormControlLabel value='Time1' control={<Radio />} label="Time" />
+                  </RadioGroup>
+                </FormControl>
+
+                <Divider/>
+
+                <FormControl component="fieldset" style={{marginBottom:'10px',marginTop:'10px'}}>
+                  <FormLabel component="legend">Online/Offline</FormLabel>
+                  <RadioGroup value={this.state.trial} onChange={this.handleTrial}>
+                    <FormControlLabel value='Online' control={<Radio />} label="Online" />
+                    <FormControlLabel value='Offline' control={<Radio />} label="Offline" />
+                  </RadioGroup>
+                </FormControl>
             </DialogContentText>
           </DialogContent>
-          <DialogActions>
+          <DialogActions style={{borderTop:'solid #f83b82 2px'}} >
             <Button onClick={this.handleClose} color="primary">
               CANCEL
             </Button>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={()=>this.handleCart(this.state.dialogTitle,this.state.courseFees,this.state.online,this.state.time,this.state.individual,this.state.trial,this.state.image)} color="primary">
               ADD
             </Button>
         </DialogActions>
         </Dialog>
+        {cartButton}
       </div>
     )
   }

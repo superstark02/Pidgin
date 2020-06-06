@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { ButtonBase, Box, Divider } from '@material-ui/core';
+import topPicks from '../Images/quality (2).png'
 
 class TopPicks extends React.Component{
     state = {
@@ -42,7 +43,7 @@ class TopPicks extends React.Component{
             return(
                 <div class='responsive'>
                 <div class='topPicks'>
-                    Top Picks
+                    <img src={topPicks} height='20px' width='20px' style={{marginTop:'3px',marginLeft:'-10px',marginRight:'10px'}} />Top Picks
                 </div>
                 <div class='containerTop'>
 
@@ -78,7 +79,7 @@ class TopPicks extends React.Component{
         return(
             <div class='responsive'>
                 <div class='topPicks'>
-                    Top Picks
+                    <img src={topPicks} height='20px' width='20px' style={{marginTop:'3px',marginLeft:'-10px',marginRight:'10px'}} /> Top Picks
                 </div>
                 <div class='containerTop'>
                 {

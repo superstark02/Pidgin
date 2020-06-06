@@ -45,6 +45,12 @@ export const Course = ({name})=>{
         setOpen(true);
     };
 
+    const addTime = (e) => {
+        setNewDetails(e.target.value);
+        db.collection('Classes').doc(name).update({timings:e.target.value});
+        setOpen(true);
+    };
+
     const handleCloseSnackbaar = (event, reason) => {
         if (reason === 'clickaway') {
           return;
@@ -63,9 +69,9 @@ export const Course = ({name})=>{
     },[])
 
     return(
-        <div style={{backgroundColor:'white',height:'600px', overflowY:'scroll'}} >
-            <div style={{textAlign:'center'}}>Courses</div>
-            <hr></hr>
+        <div style={{backgroundColor:'white',minHeight:'100%'}} >
+            Time : <input value={newDetails} placeholder="Time here" onChange={(e)=>addTime(e)} />
+            <div style={{marginBottom:'20px'}} >{name}</div>
 
             {
                 spells.map(spell=>(
@@ -73,10 +79,10 @@ export const Course = ({name})=>{
                 ))
             }
             
-            <Fab color="secondary" variant='extended' style={{position:'fixed',bottom:'0',right:'0',margin:'10px'}} onClick={handleCourse} >
+            {/*<Fab color="secondary" variant='extended' style={{position:'fixed',bottom:'0',right:'0',margin:'10px'}} onClick={handleCourse} >
                 <FaPlus/>
                   ADD COURSE
-            </Fab>
+            </Fab>*/}
             <Dialog
                     open={openCourse}
                     TransitionComponent={Transition}

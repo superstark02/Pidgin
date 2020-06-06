@@ -10,8 +10,9 @@ import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { FixedSizeList } from 'react-window';
 
-var length;
 
+
+var length;
 
 class ClassList extends React.Component{
   state = {
@@ -101,13 +102,11 @@ class ClassList extends React.Component{
           <div>
             <div style={{backgroundColor:'#E6E6E6'}}>
                 <div class='number'><FaThumbsUp size='12' style={{marginRight:'5px'}}/> Found {length} Pidgin classes around you.</div>
-                  
                     {  
                         this.state.words.map(images=>{
                         return <MyListItem classID={images.id}/>
                       })
-                    }
-                    
+                    }  
               </div>
         </div>
       )

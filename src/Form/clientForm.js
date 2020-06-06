@@ -77,20 +77,20 @@ function Child({match}){
             
             <AppBar position="static" style={{backgroundColor:'#043540'}} elevation={0} >
                 <Tabs value={value} onChange={handleChange} variant="fullWidth" centered aria-label="simple tabs example">
-                    <Tab label="General" {...a11yProps(0)} />
-                    <Tab label="Courses" {...a11yProps(1)} />
-                    <Tab label="About You" {...a11yProps(2)} />
+                    {/*<Tab label="General" {...a11yProps(0)} />*/}
+                    <Tab label="Courses" {...a11yProps(0)} />
+                    {/*<Tab label="About You" {...a11yProps(2)} />*/}
                 </Tabs>
             </AppBar>
-            <TabPanel value={value} index={0} style={{margin:'-14px'}}>
+            {/*<TabPanel value={value} index={0} style={{margin:'-14px'}}>
                 <General name={name} />
-            </TabPanel>
-            <TabPanel value={value} index={1}>
+            </TabPanel>*/}
+            <TabPanel value={value} index={0}>
                 <Course name={name}/>
             </TabPanel>
-            <TabPanel value={value} index={2}>
+            {/*<TabPanel value={value} index={2}>
                 <Qualification name={name}/>
-            </TabPanel>
+            </TabPanel>*/}
         </div>
     )
 }

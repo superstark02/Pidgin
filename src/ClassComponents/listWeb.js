@@ -77,7 +77,7 @@ var lat
           return(
             <div>
             <div class='number'><FaThumbsUp size='12' style={{marginRight:'5px'}}/> Found {length} Pidgin classes around you.</div>
-              <div style={{backgroundColor:'#E6E6E6',padding:'0px 20px'}}>
+              <div style={{padding:'0px 20px'}}>
                       {  
                          this.state.words.map(images=>{
                           return <ListItemWeb classID={images.id} uid={this.props.userId} />

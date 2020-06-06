@@ -184,6 +184,7 @@ td{
 	width: 100%;
 	max-width: 100%;
 	background-color: white;
+	box-shadow: 5px 5px 10px;
 }
 .tab{
 	color: grey
@@ -234,7 +235,7 @@ a:active {text-decoration: none;}  /* Selected link   */
 	src: local('MyFont'), url(./fonts/abeezee/ABeeZee-Regular.ttf) format('ttf');
   }
 
-  @media only screen and (min-width:620px) {
+  @media only screen and (min-width:1136px) {
 	/* For mobile phones: */
 	.unresponsive{
 		visibility: visible;

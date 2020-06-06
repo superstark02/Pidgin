@@ -33,6 +33,7 @@ class MyListItem extends React.Component{
         i2:'',
         i3:'',
         id:'',
+        fakePrice:'',
         uid:'',
     }
 
@@ -67,6 +68,7 @@ class MyListItem extends React.Component{
         var _i3 = ""
         var _id = ""
         var _age = ""
+        var _fakePrice = ""
 
         data.get().then(snapshot=>{
             _name = snapshot.get('name')
@@ -79,6 +81,7 @@ class MyListItem extends React.Component{
             _i2 = snapshot.get('i2')
             _i3 = snapshot.get('i3')
             _id = snapshot.get('id')
+            _fakePrice = snapshot.get('fakePrice')
             
             this.setState({name:_name})
             this.setState({type:_type})
@@ -90,6 +93,7 @@ class MyListItem extends React.Component{
             this.setState({i3:_i3})
             this.setState({age:_age})
             this.setState({id:_id})
+            this.setState({fakePrice:_fakePrice})
         })
     }
 
@@ -116,9 +120,10 @@ class MyListItem extends React.Component{
       }
         return (
               <div class="w3-animate-zoom">
+                
                 <ButtonBase style={{textAlign:'left',maxWidth:'100%',width:'100%',padding:'0px 5px'}}>
                   <div class='item'>
-
+                  <Box boxShadow={2} style={{paddingBottom:'10px',borderRadius:'5px'}} >
                     <div class='showImage' onClick={this.handleChange}>
                     {this.state.i1 ? (
                       <div class='alternateImg' ><img src={this.state.i1} height='200px' style={{marginRight:'2px'}}></img></div>
@@ -168,9 +173,9 @@ class MyListItem extends React.Component{
                     </div>
                     <hr color='#E6E6E6' style={{margin:'5px 0px'}} ></hr>
                     <div class='fees'>
-                      <div onClick={this.handleChange} >Starting Fees  &#8377;{this.state.fees}</div>
+                      <div onClick={this.handleChange} >Starting Fees &#8377;{this.state.fees}</div>
                     </div>
-                        
+                  </Box>    
                   </div>
                   </ButtonBase> 
                 </div>
