@@ -12,7 +12,7 @@ export default class PaymentDone extends React.Component{
     }
 
     componentDidMount(){
-        const deviceId = "c946951ffc134287"//window.Android.getId()
+        const deviceId = window.Android.getId()
         db.collection("DeviceId").doc(deviceId).get().then(snapshot=>{
             const data = snapshot.get("id")
             this.setState({phone:data})
@@ -46,7 +46,7 @@ export default class PaymentDone extends React.Component{
             })
         }
         return(
-            <div style={{position:'absolute',zIndex:'500',minHeight:'98%',backgroundColor:"white"}}>
+            <div style={{position:'absolute',zIndex:'500',minHeight:'98%',backgroundColor:"white",maxWidth:'100%'}}>
                 <img src={img} width="100%" />
                 <div style={{width:"100%",display:'flex',justifyContent:'space-around'}} >
                     <Button variant="outlined" color="secondary" onClick={()=>window.Android.app()} >

@@ -10,7 +10,7 @@ function exit(){
 export default class OnGoingClasses extends React.Component{
     render(){
         return(
-            <div style={{position:'absolute',top:'0',width:'100%',minHeight:'100%',backgroundColor:'white',zIndex:'300'}} >
+            <div style={{position:'absolute',top:'0',width:'100%',minHeight:'100%',backgroundColor:'white',zIndex:'300',maxWidth:'100%'}} >
                 <div style={{display:'flex',alignContent:'center',padding:'15px'}} >
                     <FaArrowLeft color='#043540' size='14' style={{marginTop:'5px',marginRight:'15px'}} onClick={exit} />
                     <div class='titleC' >On Going Classes</div>

@@ -73,7 +73,7 @@ imcrement = (amount) => {
     render(){
         if(this.state.length==null){
             return(
-                <div style={{position:'absolute',top:'0',width:'100%',minHeight:'100%',backgroundColor:'white',zIndex:'300'}} >
+                <div style={{position:'absolute',top:'0',width:'100%',minHeight:'100%',backgroundColor:'white',zIndex:'300',maxWidth:'100%'}} >
                 <Box boxShadow={3} >
                 <div style={{display:'flex',alignContent:'center',padding:'15px'}} >
                     <FaArrowLeft color='#043540' size='14' style={{marginTop:'5px',marginRight:'15px'}} onClick={exit} />
@@ -187,7 +187,7 @@ imcrement = (amount) => {
                             padding:'10px 0px',
                             borderRadius:'0px',
                         }}
-                        onClick = {()=>{this.checkout(100 , this.state.phone+this.state.device+toString(this.state.time))}}
+                        onClick = {()=>{this.checkout(this.state.total*100 , this.state.phone+this.state.device+toString(this.state.time))}}
                          >
                         CHECKOUT
                     </Button>

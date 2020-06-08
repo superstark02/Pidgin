@@ -14,11 +14,11 @@ state = {
 }
 
     componentDidMount(){
-        const deviceId = window.Android.getId()
+        /*const deviceId = window.Android.getId()
         db.collection("DeviceId").doc(deviceId).get().then(snapshot=>{
             const data = snapshot.get("id")
             this.setState({phone:data})
-        })
+        })*/
     }
 
     render() {

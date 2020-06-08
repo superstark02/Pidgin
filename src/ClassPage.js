@@ -15,6 +15,8 @@ import { Frame } from "framer";
 import './App.css'
 import { withStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
+import {PullToRefresh} from "react-js-pull-to-refresh";
+import {PullDownContent, ReleaseContent, RefreshContent} from "react-js-pull-to-refresh";
 
 const StyledBadge = withStyles((theme) => ({
   badge: {
@@ -51,24 +53,22 @@ class ClassPage extends React.Component{
                 </Badge>
               </Frame></Box>
     }
+
     return (
       <Fragment>
           <div class='responsive'>
-            <div style={{maxWidth:'100%',overflowY:"hidden",overflowX:"hidden"}}>
-              <MyAppBar/>
-              <Images/>
-              <Categories/>
-              <TopPicks/>
-              <ClassList/>
-              <div style={{position:'fixed',right:'0',bottom:'13%',padding:'55px'}}>
-              {cart}
-              </div>
-            </div> 
-          </div>
-          <div class='' >
-            <AppBarWeb/>
-            <ImageWeb/>
-            <SimpleTabs/>
+          <div style={{maxWidth:'100%',overflowY:"hidden",overflowX:"hidden"}}>
+          <MyAppBar/>
+          
+            <Images/>
+            <Categories/>
+            <TopPicks/>
+            <ClassList/>
+            <div style={{position:'fixed',right:'0',bottom:'13%',padding:'55px'}}>
+            {cart}
+            </div>
+            
+          </div> 
           </div>
       </Fragment>
     )
