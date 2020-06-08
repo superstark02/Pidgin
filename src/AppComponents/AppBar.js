@@ -10,22 +10,26 @@ import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneO
 var phone
 class MyAppBar extends React.Component{
 state = {
-    phone:''
+    phone:null,
+    button:'',
 }
 
     componentDidMount(){
-        /*const deviceId = window.Android.getId()
+        const deviceId = window.Android.getId()
         db.collection("DeviceId").doc(deviceId).get().then(snapshot=>{
             const data = snapshot.get("id")
             this.setState({phone:data})
-        })*/
+        })
+        phone = <NotificationsNoneOutlinedIcon style={{fontSize:'25px',color:'black',marginTop:'5px'}} />
+        this.setState({button:phone})
     }
 
     render() {
-        phone = <NotificationsNoneOutlinedIcon style={{fontSize:'25px',color:'black',marginTop:'5px'}} />
-        if(this.state.phone==null){
+        
+        if(this.state.phone===null){
             this.setState({phone:"WELCOME"})
             phone = <Button variant='filled' color='secondary'>Sign In</Button>
+            this.setState({button:phone})
         }
 
         return (
@@ -40,7 +44,7 @@ state = {
                             <div style={{display:'block',fontSize:'10px',color:'black',marginLeft:'5px'}} >Not Signed In</div>
                         </div>
                         <div style={{marginLeft:'auto'}} >
-                            {phone}
+                            {this.state.button}
                         </div>
                     </div>
                     </Box>

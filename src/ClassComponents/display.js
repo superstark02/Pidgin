@@ -23,6 +23,15 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import PermIdentityOutlinedIcon from '@material-ui/icons/PermIdentityOutlined';
+import PeopleAltTwoToneIcon from '@material-ui/icons/PeopleAltTwoTone';
+import Switch from '@material-ui/core/Switch';
+import Chip from '@material-ui/core/Chip';
+import WbSunnyIcon from '@material-ui/icons/WbSunny';
+import NightsStayIcon from '@material-ui/icons/NightsStay';
+import image from '../Images/DialogImg.png'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -179,9 +188,9 @@ myFunction = (docId) => {
   window.Android.openAnySubActivity(this.state.id, docId, "https://pidgin-ds.web.app/course")
 }
   componentDidMount(){
-    name = window.Android.getClassId();
+    name = "CookeryExpressions"//window.Android.getClassId();
     this.setState({id:name})
-    const id = window.Android.getId()
+    const id = "device"//window.Android.getId()
     const check = db.collection("DeviceId").doc(id)
       check.get().then(snapshot=>{
         this.setState({signed:snapshot.get("id")})
@@ -467,40 +476,37 @@ myFunction = (docId) => {
           fullScreen
           scroll='paper'
           onClose={this.handleClose}
-          style={{top:'30%',borderRadius:'10px'}}
+          style={{top:'20%',borderRadius:'10px'}}
         >
           <DialogTitle id="alert-dialog-slide-title" ><div  style={{fontSize:'12px'}}>{this.state.dialogTitle}</div></DialogTitle>
           <DialogContent>
+            <div>
             <DialogContentText id="alert-dialog-slide-description">
-                <FormControl component="fieldset" style={{marginBottom:'10px',marginTop:'5px'}} >
-                  <FormLabel component="legend">Individual/Group Classes</FormLabel>
-                  <RadioGroup value={this.state.trial} onChange={this.handleIndividual}>
-                    <FormControlLabel value='Individual Classes' control={<Radio />} label="Individual" />
-                    <FormControlLabel value='Group Classes' control={<Radio />} label="Group" />
-                  </RadioGroup>
-                </FormControl>
+              <div style={{display:'flex',justifyContent:'space-around',width:'100%'}} >
+                <div>
+                <ToggleButtonGroup size="small" style={{boxShadow:'2px 2px 18px #05F283'}} >
+                  <ToggleButton value="left">
+                    <PermIdentityOutlinedIcon/> Individual
+                  </ToggleButton>
+                  <ToggleButton value="center">
+                    <PeopleAltTwoToneIcon/> Group
+                  </ToggleButton>
+                </ToggleButtonGroup>
+                </div>
+              </div>
 
-                <Divider/>
+                <FormControlLabel
+                  control={<Switch/>}
+                  style={{margin:'20px 0px'}}
+                  label="I want a trial class"
+                />
 
-                <FormControl component="fieldset" style={{marginBottom:'10px',marginTop:'10px'}}>
-                  <FormLabel component="legend">Course Type</FormLabel>
-                  <RadioGroup value={this.state.trial} onChange={this.handleTrial}>
-                    <FormControlLabel value='Trial Class' control={<Radio />} label="Trial Class" />
-                    <FormControlLabel value='Full Course' control={<Radio />} label="I want full course" />
-                  </RadioGroup>
-                </FormControl>
-
-                <Divider/>
-
-                <FormControl component="fieldset" style={{marginBottom:'10px',marginTop:'10px'}}>
-                  <FormLabel component="legend">Select Time Of The Class</FormLabel>
-                  <RadioGroup value={this.state.time} onChange={this.handleTime}>
-                    <FormControlLabel value='Time' control={<Radio />} label="Time" />
-                    <FormControlLabel value='Time1' control={<Radio />} label="Time" />
-                  </RadioGroup>
-                </FormControl>
-
-                <Divider/>
+                <div style={{margin:'10px 0px'}} >
+                  <Chip variant="outlined" label="8:00 AM" color="primary" icon={<WbSunnyIcon />} style={{margin:'5px',boxShadow:'2px 2px 10px #1976d2'}} />
+                  <Chip variant="outlined" label="8:00 PM" color="primary" icon={<NightsStayIcon />} style={{margin:'5px',boxShadow:'2px 2px 10px #1976d2'}} />
+                  <Chip variant="outlined" label="8:00 AM" color="primary" icon={<WbSunnyIcon />} style={{margin:'5px',boxShadow:'2px 2px 10px #1976d2'}} />
+                  <Chip variant="outlined" label="8:00 PM" color="primary" icon={<NightsStayIcon />} style={{margin:'5px',boxShadow:'2px 2px 10px #1976d2'}} />
+                </div>
 
                 <FormControl component="fieldset" style={{marginBottom:'10px',marginTop:'10px'}}>
                   <FormLabel component="legend">Online/Offline</FormLabel>
@@ -510,7 +516,13 @@ myFunction = (docId) => {
                   </RadioGroup>
                 </FormControl>
             </DialogContentText>
+            </div>
           </DialogContent>
+
+          <div style={{width:'100%',backgroundColor:'transparent'}}>
+            <img width="100%" src={image} style={{backgroundColor:'transparent'}} />
+          </div>
+
           <DialogActions style={{borderTop:'solid #f83b82 2px'}} >
             <Button onClick={this.handleClose} color="primary">
               CANCEL

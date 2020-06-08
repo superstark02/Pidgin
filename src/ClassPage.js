@@ -17,6 +17,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import {PullToRefresh} from "react-js-pull-to-refresh";
 import {PullDownContent, ReleaseContent, RefreshContent} from "react-js-pull-to-refresh";
+import FilterRow from './AppComponents/filterRow'
 
 const StyledBadge = withStyles((theme) => ({
   badge: {
@@ -62,12 +63,12 @@ class ClassPage extends React.Component{
           
             <Images/>
             <Categories/>
+            <FilterRow/>
             <TopPicks/>
             <ClassList/>
             <div style={{position:'fixed',right:'0',bottom:'13%',padding:'55px'}}>
             {cart}
             </div>
-            
           </div> 
           </div>
       </Fragment>
