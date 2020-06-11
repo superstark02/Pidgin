@@ -188,9 +188,9 @@ myFunction = (docId) => {
   window.Android.openAnySubActivity(this.state.id, docId, "https://pidgin-ds.web.app/course")
 }
   componentDidMount(){
-    name = "CookeryExpressions"//window.Android.getClassId();
+    name = "DelhiBackereiSchule"//window.Android.getClassId();
     this.setState({id:name})
-    const id = "device"//window.Android.getId()
+    const id = "A"//window.Android.getId()
     const check = db.collection("DeviceId").doc(id)
       check.get().then(snapshot=>{
         this.setState({signed:snapshot.get("id")})
@@ -290,11 +290,11 @@ myFunction = (docId) => {
       womenCell = <td><FaFemale color='#353535' style={{marginBottom:'-2px',marginRight:'5px'}}/> Only For Woman</td>
     }
 
-    if(this.state.showCart){
-      cartButton = <div style={{position:'fixed',bottom:'0',width:'100%',padding:'10px',zIndex:'700'}} >
-        <Button onClick={()=>this.openAnyActivity(this.state.signed,"https://pidgin-ds.web.app/cart")} 
-          style={{backgroundColor:"#043540",width:'100%',color:'white',fontWeight:'300',margin:'0px',padding:'10px 0px'}} >
-          SHOW CART
+    if(true){
+      cartButton = <div style={{position:'fixed',bottom:'0',width:'100%',padding:'10px',zIndex:'700',backgroundColor:'white',boxShadow:'2px 2px 10px'}} >
+        <Button onClick={()=>this.openAnyActivity(this.state.signed,"https://pidgin-ds.web.app/cart" )} 
+          style={{backgroundColor:'#043540',width:'100%',color:'white',fontWeight:'300',margin:'0px',padding:'10px 0px'}} >
+          DEMO CLASS 
         </Button>
       </div>
     }
@@ -411,21 +411,23 @@ myFunction = (docId) => {
                 this.state.courses.map(course=>{
                   return(
                     <ListItem button style={{padding:'0px 15px'}} >
-                      <div style={{display:'flex',margin:'10px 0px'}} >
+                      <div style={{display:'flex',margin:'10px 0px',width:'100%'}} >
                         <div>
                           <img src={course.image} width='70px' height='70px' style={{borderRadius:'10px'}} />
                         </div>
-                        <div style={{marginLeft:'10px'}} onClick={()=>this.myFunction(course.id)} >
-                          <div style={{color:'#043540',fontFamily:'FiraSans',fontSize:'13px',maxWidth:'76%'}} >{course.title}</div>
+                        <div style={{marginLeft:'10px',width:'100%'}} onClick={()=>this.myFunction(course.id)} >
+                          <div style={{color:'#043540',fontFamily:'FiraSans',fontSize:'13px',maxWidth:'90%'}} >{course.title}</div>
                           <div style={{color:'grey',fontSize:'11px'}}>&#8377; {course.price}</div>
                           <Divider/>
-                           <div style={{fontSize:'8px',fontFamily:'sans-serif'}} >More Details <i class="fa fa-chevron-right" style={{fontSize:'5px',marginTop:'10px'}}></i></div>
+                           <div style={{fontSize:'8px',fontFamily:'sans-serif'}} > 
+                            More Details <i class="fa fa-chevron-right" style={{fontSize:'5px',marginTop:'10px'}}></i>
+                           </div>
                         </div>
                         <div style={{alignContent:'center',marginLeft:'auto', paddingLeft:'5px',right:'0',position:'absolute'}} >
-                          <Button onClick={()=>this.handleAdd(course.id,course.title,course.price,course.image)}
+                          {/*<Button onClick={()=>this.handleAdd(course.id,course.title,course.price,course.image)}
                             variant="outlined" color="secondary" style={{borderRadius:'5px',fontSize:'8px',padding:'5px 0px'}}>
                               + ADD
-                          </Button>
+                          </Button>*/}
                         </div>
                       </div>
                     </ListItem>
@@ -440,11 +442,20 @@ myFunction = (docId) => {
               {
                 this.state.qualifications&&
                 this.state.qualifications.map(qualifications=>{
-                  return(
-                    <ListItem style={{padding:'10px 15px'}} >
-                      <div style={{fontFamily:'FiraSans',fontSize:'13px',color:'white'}}>{qualifications.item}</div>
-                    </ListItem>
-                    )
+                  if(qualifications.header==true){
+                    return(
+                      <ListItem style={{padding:'10px 15px'}} >
+                        <div style={{fontFamily:'FiraSans',fontSize:'13px',color:'white'}}><b>{qualifications.item}</b></div>
+                      </ListItem>
+                      )
+                  }
+                  else{
+                    return(
+                      <ListItem style={{padding:'10px 15px'}} >
+                        <div style={{fontFamily:'FiraSans',fontSize:'13px',color:'white'}}>{qualifications.item}</div>
+                      </ListItem>
+                      )
+                  }
                 })
               }
             </ul>
@@ -532,6 +543,7 @@ myFunction = (docId) => {
             </Button>
         </DialogActions>
         </Dialog>
+        <div style={{height:'60px'}} />
         {cartButton}
       </div>
     )

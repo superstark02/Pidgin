@@ -66,6 +66,7 @@ class ClassPage extends React.Component{
             <FilterRow/>
             <TopPicks/>
             <ClassList/>
+            <div style={{height:'60px',backgroundColor:'transparent'}} />
             <div style={{position:'fixed',right:'0',bottom:'13%',padding:'55px'}}>
             {cart}
             </div>

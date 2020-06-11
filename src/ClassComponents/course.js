@@ -1,10 +1,10 @@
 import React from 'react'
 import {FaArrowLeft} from 'react-icons/fa';
 import {db} from '../firebase'
-import wa from '../Images/waButton.png'
-import Fab from '@material-ui/core/Fab';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import {Button, Dialog } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 
+var cartButton;
 export default class Course extends React.Component{
     
     state = {
@@ -21,8 +21,8 @@ export default class Course extends React.Component{
     }
 
     componentDidMount(){
-        var docId = window.Android.getDocId()
-        var id = window.Android.getClassId()
+        var docId = "0"//window.Android.getDocId()
+        var id = "DelhiBackereiSchule"//window.Android.getClassId()
 
         const classes = db.collection('Classes').doc(id)
         classes.get().then(snapshot=>{
@@ -53,37 +53,47 @@ export default class Course extends React.Component{
         window.Android.exit();
       }
     render(){
+        if(true){
+            cartButton = <div style={{position:'fixed',bottom:'0',width:'100%',padding:'10px',zIndex:'700',backgroundColor:'white',boxShadow:'2px 2px 10px'}} >
+              <Button onClick={()=>this.openAnyActivity(this.state.signed,"https://pidgin-ds.web.app/cart" )} 
+                style={{backgroundColor:'#043540',width:'100%',color:'white',fontWeight:'300',margin:'0px',padding:'10px 0px'}} >
+                DEMO CLASS 
+              </Button>
+            </div>
+          }
        
         return(
-            <div style={{overflowY:'hidden'}} >
-        <div class='overlayBlack'>
-            <ArrowBackIcon fontSize='10px' style={{margin:'15px'}} onClick={this.goBack}/>
-        </div>
-        <div  style={{width:'100%'}} >
-            <img src={this.state.image} style={{width:'100%'}} />
+            <div style={{position:'absolute',top:'0',zIndex:'500',maxWidth:'100%',width:'100%',minHeight:'100%',backgroundColor:'white'}} >
+        <Box boxShadow={3} style={{width:'100%'}} >
+            <div style={{display:'flex',alignContent:'center',padding:'15px',width:'100%'}} >
+                <FaArrowLeft color='#043540' size='14' style={{marginTop:'5px',marginRight:'15px'}} onClick={this.goBack} />
+                <div class='titleC' >{this.state.title}</div>
+            </div>
+        </Box>
+        <div  style={{width:'100%',display:'flex',justifyContent:'space-around',minHeight:'25%',marginTop:'10px',padding:'20px'}} >
+            <img src={this.state.image}  style={{borderRadius:'5%',maxWidth:'100%',width:'60%' }} />
         </div>
         
-        <div style={{position:'absolute',top:'0',marginTop:'100px',backgroundColor:'white',width:'100%',
-            borderRadius:'30px', padding:'10px',overflowY:'scroll',minHeight:'90%',zIndex:'500' }}>
-            <div style={{borderRadius:'30px 30px 0px 0px',width:'100%',border:'solid 1px #043540',color:'#043540',padding:'10px'}} >
-                <div style={{textAlign:'center',fontSize:'16px'}} >{this.state.title}</div>
-                <div  style={{textAlign:'center',fontSize:'13px'}} >&#8377; {this.state.price}</div>
-            </div>
+        <div style={{backgroundColor:'white',width:'100%',padding:'10px',minHeight:'90%'}}>
             <hr color='#043540' size='4' ></hr>
-            <div style={{fontFamily:'FiraSansItalic'}} >What you will learn...</div>
-            <div>
-                <ol style={{fontSize:'12px',fontWeight:'200'}} >
+            <div style={{fontFamily:'FiraSans'}} >What you will learn...</div>
+            <div style={{padding:'10px',fontSize:'12px'}} >
             {
                 this.state.details&&
                 this.state.details.map(details=>{
                     return(
-                            <li style={{margin:'5px 0px',fontFamily:'FiraSans'}} >{details.item}</li>    
+                            <div style={{margin:'5px 0px',fontFamily:'FiraSans',minHeight:'10px'}} >{details.item}</div>    
                         )
                     })
             }      
-                </ol>
             </div>
         </div>
+        <div style={{padding:'10px',width:'100%',color:'grey',fontSize:'10px',textAlign:'center',backgroundColor:'white'}} >Pidgin</div>
+        {cartButton}
+        <div style={{height:'60px'}} />
+        <Dialog>    
+            
+        </Dialog>
     </div>
         )
     }
