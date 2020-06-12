@@ -3,6 +3,21 @@ import {FaArrowLeft} from 'react-icons/fa';
 import {db} from '../firebase'
 import {Button, Dialog } from '@material-ui/core';
 import { Box } from '@material-ui/core';
+import Slide from '@material-ui/core/Slide';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import AccessTimeRoundedIcon from '@material-ui/icons/AccessTimeRounded';
+import TodayRoundedIcon from '@material-ui/icons/TodayRounded';
+import Grid from '@material-ui/core/Grid';
+import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded';
+import TextField from '@material-ui/core/TextField';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
+
+
 
 var cartButton;
 export default class Course extends React.Component{
@@ -12,7 +27,11 @@ export default class Course extends React.Component{
         image:"",
         price:"",
         title:"",
-        name:""
+        name:"",
+        open:false,
+        phone:'',
+        device:'',
+        id:'',
     }
 
     constructor(){
@@ -20,9 +39,29 @@ export default class Course extends React.Component{
         this.goBack = this.goBack.bind(this);
     }
 
+    checkout = (amount,orderId) => {
+        window.Android.checkOut(amount,orderId,this.state.phone);
+    }
+
+    handleClose = () => {
+        this.setState({open:false})     
+       }
+    handleAdd = (courseId,title,price,image) => {
+    this.setState({open:true,dialogCourseId:courseId,dialogTitle:title,courseFees:price,image:image})     
+    }
+
     componentDidMount(){
-        var docId = "0"//window.Android.getDocId()
-        var id = "DelhiBackereiSchule"//window.Android.getClassId()
+        var docId = this.props.location.state.courseId
+        var id = this.props.location.state.classId
+
+        const phone = this.props.location.state.phone
+        const device = window.Android.getId()
+        this.setState({phone:phone})
+        this.setState({device:device})
+
+        const timestamp = Date.now()
+        var time = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(timestamp)
+        this.setState({time:time})
 
         const classes = db.collection('Classes').doc(id)
         classes.get().then(snapshot=>{
@@ -35,6 +74,7 @@ export default class Course extends React.Component{
                 this.setState({title:snapshot.get("title")})
                 this.setState({price:snapshot.get("price")})
                 this.setState({image:snapshot.get("image")})
+                this.setState({id:snapshot.get("id")})
             })
 
         const note = db.collection('Classes').doc(id).collection('Courses').doc(docId).collection('details')    
@@ -55,7 +95,7 @@ export default class Course extends React.Component{
     render(){
         if(true){
             cartButton = <div style={{position:'fixed',bottom:'0',width:'100%',padding:'10px',zIndex:'700',backgroundColor:'white',boxShadow:'2px 2px 10px'}} >
-              <Button onClick={()=>this.openAnyActivity(this.state.signed,"https://pidgin-ds.web.app/cart" )} 
+              <Button onClick={this.handleAdd} 
                 style={{backgroundColor:'#043540',width:'100%',color:'white',fontWeight:'300',margin:'0px',padding:'10px 0px'}} >
                 DEMO CLASS 
               </Button>
@@ -66,7 +106,7 @@ export default class Course extends React.Component{
             <div style={{position:'absolute',top:'0',zIndex:'500',maxWidth:'100%',width:'100%',minHeight:'100%',backgroundColor:'white'}} >
         <Box boxShadow={3} style={{width:'100%'}} >
             <div style={{display:'flex',alignContent:'center',padding:'15px',width:'100%'}} >
-                <FaArrowLeft color='#043540' size='14' style={{marginTop:'5px',marginRight:'15px'}} onClick={this.goBack} />
+                <FaArrowLeft color='#043540' size='14' style={{marginTop:'5px',marginRight:'15px'}} onClick={this.props.history.goBack} />
                 <div class='titleC' >{this.state.title}</div>
             </div>
         </Box>
@@ -91,8 +131,77 @@ export default class Course extends React.Component{
         <div style={{padding:'10px',width:'100%',color:'grey',fontSize:'10px',textAlign:'center',backgroundColor:'white'}} >Pidgin</div>
         {cartButton}
         <div style={{height:'60px'}} />
-        <Dialog>    
-            
+        <Dialog
+            open={this.state.open}
+            TransitionComponent={Transition}
+            keepMounted
+            fullScreen
+            scroll='paper'
+            onClose={this.handleClose}
+            style={{top:'20%',borderRadius:'10px',fontFamily:'FiraSans'}}
+        >    
+            <DialogTitle id="alert-dialog-slide-title" ><div style={{fontSize:'15px'}} >Trial Class @ &#8377;10</div></DialogTitle>
+            <DialogContent>
+            <div style={{width:'100%',fontSize:'12px'}} >
+                <div style={{display:'flex',justifyContent:'space-between',backgroundColor:'#f73378',color:"white",padding:'10px',alignItems:'center',borderRadius:'5px'}} >
+                    <div style={{display:'flex',alignItems:'center'}} >
+                        <div style={{marginRight:'10px'}} ><AccessTimeRoundedIcon/></div>
+                        <div>Time</div>
+                    </div>
+                    <div>
+                        1:00
+                    </div>
+                </div>
+
+                <div style={{display:'flex',justifyContent:'space-between',padding:'10px',alignItems:'center',color:'#f50057'}} >
+                    <div style={{display:'flex',alignItems:'center'}} >
+                        <div style={{marginRight:'10px'}} ><TodayRoundedIcon/></div>
+                        <div>Date</div>
+                    </div>
+                    <div>
+                        1:00
+                    </div>
+                </div>
+
+                <div style={{display:'flex',justifyContent:'space-between',backgroundColor:'#f73378',color:"white",padding:'10px',alignItems:'center',borderRadius:'5px'}} >
+                    <div style={{display:'flex',alignItems:'center'}} >
+                        <div style={{marginRight:'10px'}} ><AccessTimeRoundedIcon/></div>
+                        <div>Duration</div>
+                    </div>
+                    <div>
+                        1 hour
+                    </div>
+                </div>
+            </div>
+
+            <div style={{width:'100%',boxShadow:'2px 2px 10px',borderRadius:'10px',padding:'10px',marginTop:'20px'}}>
+            <Grid container spacing={1} alignItems="flex-end">
+                <Grid item>
+                    <MailOutlineRoundedIcon />
+                </Grid>
+                <Grid item style={{display:'flex',fontSize:'12px'}} alignItems="flex-end">
+                    <TextField label="Email"  color='secondary' style={{width:'50%'}} />@gmail.com
+                </Grid>
+            </Grid>
+            <div style={{fontSize:'10px',margin:'10px',marginTop:'20px'}} >
+                This class will be conducted over Google Classrooms. Through this e-mail id.
+            </div>
+            <div style={{fontSize:'10px',margin:'10px'}} >
+                The classroom-id and teacher's details will be provided after the payment.
+            </div>
+                
+            </div>
+          </DialogContent>
+          <DialogActions style={{borderTop:'solid #f83b82 2px'}} >
+            <Button onClick={this.handleClose} color="primary">
+              CANCEL
+            </Button>
+            <Button color="primary" 
+                onClick = {()=>{this.checkout(100*10, this.state.id )}}
+            >
+              PROCEED TO PAY
+            </Button>
+        </DialogActions>
         </Dialog>
     </div>
         )

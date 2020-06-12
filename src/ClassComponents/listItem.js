@@ -119,12 +119,18 @@ class MyListItem extends React.Component{
         )
       }
         return (
-              <div class="w3-animate-zoom">
+              <div class="animated fadeIn">
                 
                 <ButtonBase style={{textAlign:'left',maxWidth:'100%',width:'100%',padding:'0px 5px'}}>
                   <div class='item'>
                   <Box boxShadow={2} style={{paddingBottom:'10px',borderRadius:'5px'}} >
-                    <div class='showImage' onClick={this.handleChange}>
+                    <Link to={{
+                      pathname:'/classDisplay',
+                      state:{
+                        classId:this.state.id
+                      }
+                    }} >
+                    <div class='showImage'>
                     {this.state.i1 ? (
                       <div class='alternateImg' ><img src={this.state.i1} height='200px' style={{marginRight:'2px'}}></img></div>
                     ) : (
@@ -133,7 +139,7 @@ class MyListItem extends React.Component{
                       <img src={this.state.i2} height='200px' style={{marginRight:'2px'}}></img>
                       <img src={this.state.i3} height='200px' style={{marginRight:'2px'}}></img>
                     </div>
-
+                    </Link>  
                     <div style={{display:'flex',position:'absolute',zIndex:'50'}} >
                       <div class='age'>
                         Age: {this.state.age}+

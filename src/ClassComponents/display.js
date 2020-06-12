@@ -32,6 +32,8 @@ import Chip from '@material-ui/core/Chip';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import NightsStayIcon from '@material-ui/icons/NightsStay';
 import image from '../Images/DialogImg.png'
+import { Link } from 'react-router-dom';
+import Loading from './Loading';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -66,9 +68,6 @@ function a11yProps(index) {
   };
 }
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
 
 var name
 var womenCell;
@@ -76,9 +75,6 @@ var onlinecell;
 
 var women;
 var online;
-
-var cart;
-var cartButton;
 
 class ClassesDisplay extends React.Component{
 
@@ -121,6 +117,8 @@ openAnyActivity = (phone,url) =>{
 
     signed:false,
     showCart:false,
+
+    loading:false,
   }
 
   constructor(){
@@ -188,9 +186,12 @@ myFunction = (docId) => {
   window.Android.openAnySubActivity(this.state.id, docId, "https://pidgin-ds.web.app/course")
 }
   componentDidMount(){
-    name = "DelhiBackereiSchule"//window.Android.getClassId();
+    name = this.props.location.state.classId;
     this.setState({id:name})
-    const id = "A"//window.Android.getId()
+
+    this.setState({loading:true})
+    setInterval(() => {this.setState({loading:false})}, 1000);
+    const id = window.Android.getId()
     const check = db.collection("DeviceId").doc(id)
       check.get().then(snapshot=>{
         this.setState({signed:snapshot.get("id")})
@@ -290,13 +291,8 @@ myFunction = (docId) => {
       womenCell = <td><FaFemale color='#353535' style={{marginBottom:'-2px',marginRight:'5px'}}/> Only For Woman</td>
     }
 
-    if(true){
-      cartButton = <div style={{position:'fixed',bottom:'0',width:'100%',padding:'10px',zIndex:'700',backgroundColor:'white',boxShadow:'2px 2px 10px'}} >
-        <Button onClick={()=>this.openAnyActivity(this.state.signed,"https://pidgin-ds.web.app/cart" )} 
-          style={{backgroundColor:'#043540',width:'100%',color:'white',fontWeight:'300',margin:'0px',padding:'10px 0px'}} >
-          DEMO CLASS 
-        </Button>
-      </div>
+    if(this.state.loading){
+      return <Loading/>
     }
 
     return (
@@ -322,7 +318,7 @@ myFunction = (docId) => {
               </div>    
       
         <div class='overlayBlack' >
-          <div onClick={this.exit}><ArrowBackIcon fontSize='10px' style={{margin:'15px'}} /></div>
+          <div onClick={this.props.history.goBack}><ArrowBackIcon fontSize='10px' style={{margin:'15px'}} /></div>
         </div>
         </div>
         <div>
@@ -411,11 +407,21 @@ myFunction = (docId) => {
                 this.state.courses.map(course=>{
                   return(
                     <ListItem button style={{padding:'0px 15px'}} >
+                      <Link 
+                        to={{
+                          pathname:'/course',
+                          state:{
+                            classId:this.state.id,
+                            courseId:course.id,
+                            phone:this.state.signed
+                          }
+                        }}
+                      >
                       <div style={{display:'flex',margin:'10px 0px',width:'100%'}} >
                         <div>
                           <img src={course.image} width='70px' height='70px' style={{borderRadius:'10px'}} />
                         </div>
-                        <div style={{marginLeft:'10px',width:'100%'}} onClick={()=>this.myFunction(course.id)} >
+                        <div style={{marginLeft:'10px',width:'100%'}}>
                           <div style={{color:'#043540',fontFamily:'FiraSans',fontSize:'13px',maxWidth:'90%'}} >{course.title}</div>
                           <div style={{color:'grey',fontSize:'11px'}}>&#8377; {course.price}</div>
                           <Divider/>
@@ -430,6 +436,7 @@ myFunction = (docId) => {
                           </Button>*/}
                         </div>
                       </div>
+                      </Link>
                     </ListItem>
                     )
                 })
@@ -480,71 +487,7 @@ myFunction = (docId) => {
           </div>
         </List>
         
-        <Dialog
-          open={this.state.open}
-          TransitionComponent={Transition}
-          keepMounted
-          fullScreen
-          scroll='paper'
-          onClose={this.handleClose}
-          style={{top:'20%',borderRadius:'10px'}}
-        >
-          <DialogTitle id="alert-dialog-slide-title" ><div  style={{fontSize:'12px'}}>{this.state.dialogTitle}</div></DialogTitle>
-          <DialogContent>
-            <div>
-            <DialogContentText id="alert-dialog-slide-description">
-              <div style={{display:'flex',justifyContent:'space-around',width:'100%'}} >
-                <div>
-                <ToggleButtonGroup size="small" style={{boxShadow:'2px 2px 18px #05F283'}} >
-                  <ToggleButton value="left">
-                    <PermIdentityOutlinedIcon/> Individual
-                  </ToggleButton>
-                  <ToggleButton value="center">
-                    <PeopleAltTwoToneIcon/> Group
-                  </ToggleButton>
-                </ToggleButtonGroup>
-                </div>
-              </div>
-
-                <FormControlLabel
-                  control={<Switch/>}
-                  style={{margin:'20px 0px'}}
-                  label="I want a trial class"
-                />
-
-                <div style={{margin:'10px 0px'}} >
-                  <Chip variant="outlined" label="8:00 AM" color="primary" icon={<WbSunnyIcon />} style={{margin:'5px',boxShadow:'2px 2px 10px #1976d2'}} />
-                  <Chip variant="outlined" label="8:00 PM" color="primary" icon={<NightsStayIcon />} style={{margin:'5px',boxShadow:'2px 2px 10px #1976d2'}} />
-                  <Chip variant="outlined" label="8:00 AM" color="primary" icon={<WbSunnyIcon />} style={{margin:'5px',boxShadow:'2px 2px 10px #1976d2'}} />
-                  <Chip variant="outlined" label="8:00 PM" color="primary" icon={<NightsStayIcon />} style={{margin:'5px',boxShadow:'2px 2px 10px #1976d2'}} />
-                </div>
-
-                <FormControl component="fieldset" style={{marginBottom:'10px',marginTop:'10px'}}>
-                  <FormLabel component="legend">Online/Offline</FormLabel>
-                  <RadioGroup value={this.state.trial} onChange={this.handleTrial}>
-                    <FormControlLabel value='Online' control={<Radio />} label="Online" />
-                    <FormControlLabel value='Offline' control={<Radio />} label="Offline" />
-                  </RadioGroup>
-                </FormControl>
-            </DialogContentText>
-            </div>
-          </DialogContent>
-
-          <div style={{width:'100%',backgroundColor:'transparent'}}>
-            <img width="100%" src={image} style={{backgroundColor:'transparent'}} />
-          </div>
-
-          <DialogActions style={{borderTop:'solid #f83b82 2px'}} >
-            <Button onClick={this.handleClose} color="primary">
-              CANCEL
-            </Button>
-            <Button onClick={()=>this.handleCart(this.state.dialogTitle,this.state.courseFees,this.state.online,this.state.time,this.state.individual,this.state.trial,this.state.image)} color="primary">
-              ADD
-            </Button>
-        </DialogActions>
-        </Dialog>
         <div style={{height:'60px'}} />
-        {cartButton}
       </div>
     )
   }
