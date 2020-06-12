@@ -61,7 +61,7 @@ class ClassList extends React.Component{
         length = snapshot.numChildren()
         var newState = [];
         
-        /*for(var i = 0; i<length-1; i++){
+        for(var i = 0; i<length-1; i++){
           for(var j = 0; j <length-1-i; j++){
             var distance1 = this.calculateDistance(this.state.latitude, this.state.longitude, words[j].lat, words[j].lon)
             var distance2 = this.calculateDistance(this.state.latitude, this.state.longitude, words[j+1].lat, words[j+1].lon)
@@ -72,7 +72,7 @@ class ClassList extends React.Component{
             }
           }
           newState.push({id: words[i].id});
-        }*/
+        }
 
         for(let word in words){
           newState.push({id:words[word].id})

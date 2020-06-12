@@ -322,7 +322,13 @@ class SearchView extends React.Component{
                         filteredClass.map(classes=>{
                         return(
                             <div class='item' style={{width:'auto'}}>
-                                <div class='showImage'onClick={()=>this.handleChange(classes.id)} >
+                                <Link to={{
+                                    pathname:'/classDisplay',
+                                    state:{
+                                        classId:this.state.id
+                                    }
+                                    }} >
+                                <div class='showImage' >
                                     <img src={classes.i1} height='200px' style={{marginRight:'2px'}}></img>
                                     <img src={classes.i2} height='200px' style={{marginRight:'2px'}}></img>
                                     <img src={classes.i3} height='200px' style={{marginRight:'2px'}}></img>
@@ -335,8 +341,16 @@ class SearchView extends React.Component{
                                         {classes.type}
                                     </div>
                                 </div>
+                                </Link>
                                 <div class='container'>
+                                    <Link to={{
+                                        pathname:'/classDisplay',
+                                        state:{
+                                            classId:this.state.id
+                                        }
+                                    }} >
                                     <div class='name' onClick={()=>this.handleChange(classes.id)}  >{classes.name}</div>
+                                    </Link>
                                     <div class='map'>
                                         <div>
                                             <div><a href={this.state.location}><FaMap size='15'color='#04BFBF'/></a></div>
@@ -344,14 +358,21 @@ class SearchView extends React.Component{
                                         </div>
                                     </div>
                                 </div>
-                                
-                                    <div class='type' onClick={()=>this.handleChange(classes.id)} >
+
+                                    <Link to={{
+                                        pathname:'/classDisplay',
+                                        state:{
+                                            classId:this.state.id
+                                        }
+                                    }} >
+                                    <div class='type'>
                                         {classes.address}
                                     </div>
                                         <Divider/>
-                                    <div class='fees' onClick={()=>this.handleChange(classes.id)} >
+                                    <div class='fees' >
                                         <div>Starting Fees  &#8377;{classes.fees}</div>
                                     </div> 
+                                    </Link>
                             </div>
                             )
                         })

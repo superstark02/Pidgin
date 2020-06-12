@@ -172,17 +172,18 @@ class MyListItem extends React.Component{
                               />
                           </div>*/}
                         </div>
-                      <Link to={{
-                        pathname:'/classDisplay',
-                        state:{
-                          classId:this.state.id
-                        }
-                      }} >
+                      
                         <div>
+                        <Link to={{
+                          pathname:'/classDisplay',
+                          state:{
+                            classId:this.state.id
+                          }
+                        }} >
                           <div><a href={this.state.location}><FaMap size='15'color='#04BFBF'/></a></div>
+                          </Link>
                           <div>Map</div>
                         </div>
-                      </Link>
                       </div>
                       
                     </div>
