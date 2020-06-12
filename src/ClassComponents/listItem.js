@@ -139,7 +139,7 @@ class MyListItem extends React.Component{
                       <img src={this.state.i2} height='200px' style={{marginRight:'2px'}}></img>
                       <img src={this.state.i3} height='200px' style={{marginRight:'2px'}}></img>
                     </div>
-                    </Link>  
+                     
                     <div style={{display:'flex',position:'absolute',zIndex:'50'}} >
                       <div class='age'>
                         Age: {this.state.age}+
@@ -148,10 +148,17 @@ class MyListItem extends React.Component{
                         {this.state.type}
                       </div>
                     </div>
-
+                    </Link> 
                     <div class='container'>
 
-                      <div class='name' onClick={this.handleChange} >{this.state.name}</div>
+                    <Link to={{
+                      pathname:'/classDisplay',
+                      state:{
+                        classId:this.state.id
+                      }
+                    }} >
+                      <div class='name'>{this.state.name}</div> 
+                    </Link>
 
                       <div class='map'>
 
@@ -165,22 +172,35 @@ class MyListItem extends React.Component{
                               />
                           </div>*/}
                         </div>
+                      <Link to={{
+                        pathname:'/classDisplay',
+                        state:{
+                          classId:this.state.id
+                        }
+                      }} >
                         <div>
                           <div><a href={this.state.location}><FaMap size='15'color='#04BFBF'/></a></div>
                           <div>Map</div>
                         </div>
-
+                      </Link>
                       </div>
+                      
                     </div>
                         
-                    
-                    <div class='type' onClick={this.handleChange}>
+                    <Link to={{
+                        pathname:'/classDisplay',
+                        state:{
+                          classId:this.state.id
+                        }
+                      }} >
+                    <div class='type'>
                       {this.state.adress}
                     </div>
                     <hr color='#E6E6E6' style={{margin:'5px 0px'}} ></hr>
                     <div class='fees'>
-                      <div onClick={this.handleChange} >Starting Fees &#8377;{this.state.fees}</div>
+                      <div >Starting Fees &#8377;{this.state.fees}</div>
                     </div>
+                    </Link>
                   </Box>    
                   </div>
                   </ButtonBase> 
