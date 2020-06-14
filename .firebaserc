@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "pidgin-ds"
+  },
+  "targets": {
+    "pidgin-ds": {
+      "hosting": {
+        "pidgin-ds": [
+          "pidgin-website"
+        ]
+      }
+    }
   }
 }

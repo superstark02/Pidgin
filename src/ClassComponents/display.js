@@ -34,6 +34,7 @@ import NightsStayIcon from '@material-ui/icons/NightsStay';
 import image from '../Images/DialogImg.png'
 import { Link } from 'react-router-dom';
 import Loading from './Loading';
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -75,6 +76,7 @@ var onlinecell;
 
 var women;
 var online;
+var branches;
 
 class ClassesDisplay extends React.Component{
 
@@ -90,6 +92,7 @@ openAnyActivity = (phone,url) =>{
     note: null,
     courses: null,
     offers: null,
+    branches:null,
     age:null,
     id:'',
     woman:false,
@@ -191,11 +194,11 @@ myFunction = (docId) => {
 
     this.setState({loading:true})
     setInterval(() => {this.setState({loading:false})}, 1000);
-    const id = window.Android.getId()
+    /*const id = window.Android.getId()
     const check = db.collection("DeviceId").doc(id)
       check.get().then(snapshot=>{
         this.setState({signed:snapshot.get("id")})
-      })
+      })*/
 
     const data = db.collection('Classes').doc(name);    
      data.get()
@@ -278,6 +281,17 @@ myFunction = (docId) => {
         })
         this.setState({offers:offers})
       })
+
+      const branches = db.collection('Classes').doc(name).collection('Branches');    
+      branches.get()
+      .then(snapshot=>{
+        const offers = []
+        snapshot.forEach(doc=>{
+          const data = doc.data()
+          offers.push(data)
+        })
+        this.setState({branches:offers})
+      })
   }
 
   render() {
@@ -293,6 +307,10 @@ myFunction = (docId) => {
 
     if(this.state.loading){
       return <Loading/>
+    }
+
+    if(this.state.branches!=null){
+      branches = <div><InfoOutlinedIcon/> This institute has multiple branches.</div>
     }
 
     return (

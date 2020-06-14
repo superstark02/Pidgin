@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {
-  BrowserRouter as Router, Route, Switch, withRouter,
+  BrowserRouter as Router, Route, Switch,
 } from 'react-router-dom'
 import ClassPage from './ClassPage';
 import ClassesDisplay from './ClassComponents/display'

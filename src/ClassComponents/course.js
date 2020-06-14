@@ -32,6 +32,8 @@ export default class Course extends React.Component{
         phone:'',
         device:'',
         id:'',
+        email:null,
+        time:null,
     }
 
     constructor(){
@@ -39,8 +41,10 @@ export default class Course extends React.Component{
         this.goBack = this.goBack.bind(this);
     }
 
-    checkout = (amount,orderId) => {
-        window.Android.checkOut(amount,orderId,this.state.phone);
+    checkout = (amount,orderId,email) => {
+        if(this.state.email!==null||this.state.email!==''){
+            window.Android.checkOut(amount,orderId,this.state.phone,email);
+        }
     }
 
     handleClose = () => {
@@ -55,9 +59,9 @@ export default class Course extends React.Component{
         var id = this.props.location.state.classId
 
         const phone = this.props.location.state.phone
-        const device = window.Android.getId()
+        /*const device = window.Android.getId()
         this.setState({phone:phone})
-        this.setState({device:device})
+        this.setState({device:device})*/
 
         const timestamp = Date.now()
         var time = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(timestamp)
@@ -180,7 +184,7 @@ export default class Course extends React.Component{
                     <MailOutlineRoundedIcon />
                 </Grid>
                 <Grid item style={{display:'flex',fontSize:'12px'}} alignItems="flex-end">
-                    <TextField label="Email"  color='secondary' style={{width:'50%'}} />@gmail.com
+                    <TextField label="Email"  color='secondary' style={{width:'50%'}} value={this.state.email} onChange={(e)=>{this.setState({email:e.target.value})}} />@gmail.com
                 </Grid>
             </Grid>
             <div style={{fontSize:'10px',margin:'10px',marginTop:'20px'}} >
@@ -197,7 +201,7 @@ export default class Course extends React.Component{
               CANCEL
             </Button>
             <Button color="primary" 
-                onClick = {()=>{this.checkout(100*10, this.state.id )}}
+                onClick = {()=>{this.checkout(100*10, this.state.id+"+"+this.state.title+"+"+this.state.time+"+"+this.state.phone, this.state.email )}}
             >
               PROCEED TO PAY
             </Button>

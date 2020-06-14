@@ -11,15 +11,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 
-const StyledRating = withStyles({
-  iconFilled: {
-    color: '#ff6d75',
-  },
-  iconHover: {
-    color: '#ff3d47',
-  },
-})(Rating);
-
 
 class MyListItem extends React.Component{
     state = {
@@ -35,6 +26,7 @@ class MyListItem extends React.Component{
         id:'',
         fakePrice:'',
         uid:'',
+        brached:false
     }
 
     constructor(){
@@ -71,6 +63,7 @@ class MyListItem extends React.Component{
         var _fakePrice = ""
 
         data.get().then(snapshot=>{
+          
             _name = snapshot.get('name')
             _type = snapshot.get('type')
             _adress = snapshot.get('address')
@@ -118,6 +111,21 @@ class MyListItem extends React.Component{
           </div>
         )
       }
+
+      if(this.state.brached){
+        const data = db.collection('Classes').doc(this.props.classID).collection("Branches")
+        data.get().then(snapshot=>{
+          const branches = []
+          var lat
+          var lon
+          snapshot.forEach(doc=>{
+            const data = doc.data()
+            branches.push(data)
+          })
+          console.log(this.state.brached)
+        })
+      }
+
         return (
               <div class="animated fadeIn">
                 
@@ -161,27 +169,8 @@ class MyListItem extends React.Component{
                     </Link>
 
                       <div class='map'>
-
                         <div>
-                          {/*<div style={{marginTop:'2px',marginRight:'10px'}} onClick={()=>this.handleLike(this.state.id,this.state.name)} >
-                              <StyledRating
-                                defaultValue={0}
-                                precision={1}
-                                max={1}
-                                icon={<FavoriteIcon fontSize="inherit" />}
-                              />
-                          </div>*/}
-                        </div>
-                      
-                        <div>
-                        <Link to={{
-                          pathname:'/classDisplay',
-                          state:{
-                            classId:this.state.id
-                          }
-                        }} >
                           <div><a href={this.state.location}><FaMap size='15'color='#04BFBF'/></a></div>
-                          </Link>
                           <div>Map</div>
                         </div>
                       </div>

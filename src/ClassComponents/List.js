@@ -20,6 +20,7 @@ class ClassList extends React.Component{
       name:"null",
       latitude:0,
       longitude:0,
+      word:null,
     }
     
     constructor(props){
@@ -51,17 +52,18 @@ class ClassList extends React.Component{
     }
 
     componentDidMount(){
-
       this.position();
 
-      var userId = 'Location'
-      const d = rdb.ref().child(userId);    
+      const d = rdb.ref().child('Location');    
       d.on('value',(snapshot)=>{
         var words = snapshot.val();
+        this.setState({word:words})
+
         length = snapshot.numChildren()
+        this.setState({length:length})
         var newState = [];
-        
-        for(var i = 0; i<length-1; i++){
+
+        /*for(var i = 0; i<length-1; i++){
           for(var j = 0; j <length-1-i; j++){
             var distance1 = this.calculateDistance(this.state.latitude, this.state.longitude, words[j].lat, words[j].lon)
             var distance2 = this.calculateDistance(this.state.latitude, this.state.longitude, words[j+1].lat, words[j+1].lon)
@@ -71,8 +73,9 @@ class ClassList extends React.Component{
               words[j+1] = temp 
             }
           }
+          
           newState.push({id: words[i].id});
-        }
+        }*/
 
         for(let word in words){
           newState.push({id:words[word].id})
