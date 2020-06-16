@@ -108,7 +108,7 @@ class ClassList extends React.Component{
       else{
         return(
           <div>
-            <div style={{backgroundColor:'#E6E6E6'}}>
+            <div style={{backgroundColor:'white'}}>
                 <div class='number'><FaThumbsUp size='12' style={{marginRight:'5px'}}/> Found {length} Pidgin classes around you.</div>
                     {  
                         this.state.words.map(images=>{

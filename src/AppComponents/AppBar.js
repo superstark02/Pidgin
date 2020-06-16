@@ -15,13 +15,13 @@ state = {
 }
 
     componentDidMount(){
-        /*const deviceId = window.Android.getId()
+        const deviceId = window.Android.getId()
         db.collection("DeviceId").doc(deviceId).get().then(snapshot=>{
             const data = snapshot.get("id")
             this.setState({phone:data})
         })
         phone = <NotificationsNoneOutlinedIcon style={{fontSize:'25px',color:'black',marginTop:'5px'}} />
-        this.setState({button:phone})*/
+        this.setState({button:phone})
     }
 
     render() {
