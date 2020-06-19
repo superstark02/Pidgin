@@ -73,14 +73,10 @@
     top: 0;
     z-index: 3;
 }
-.altImage{
-    height: 200px;
-    background-image: url(https://firebasestorage.googleapis.com/v0/b/pidgin-ds.appspot.com/o/app_resources%2Fclasses_section%2FaltImage.png?alt=media&token=8a1292ea-1f90-4831-be70-bd5a01de48ba);
-}
 .alternateImg{
-    background-image: url(https://firebasestorage.googleapis.com/v0/b/pidgin-ds.appspot.com/o/app_resources%2Fclasses_section%2FaltImage.png?alt=media&token=8a1292ea-1f90-4831-be70-bd5a01de48ba);
     height: 200px;
     background-size: cover;
+    display: flex;
 }
 .age{
     background-color: #00c600;

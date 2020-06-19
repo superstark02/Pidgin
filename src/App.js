@@ -24,12 +24,15 @@ import MyGoogleLogIn from './Log/GLogIn';
 import Checkout from './Resource/RazorPay';
 import PaymentDone from './Cart/paymentDone';
 import PaymentNotDone from './Cart/paymentNotDone';
+import { Provider } from 'react-redux';
+import store from './Cart/Store'
 
 class App extends React.Component{
 
   render() {
     return (
       <Router history={history}>
+        <Provider store={store} >
         <AnimatePresence>
         <Switch>
           <Route exact path='/on_going' component={OnGoingClasses} ></Route>
@@ -52,7 +55,7 @@ class App extends React.Component{
           <Route exact path='/clientForm/:id' component={ClientForm}></Route>
         </Switch>
         </AnimatePresence>
-        <BottomNav/>
+        </Provider>
       </Router>
     )
   }

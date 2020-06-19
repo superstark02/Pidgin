@@ -1,11 +1,10 @@
 import React, { Fragment } from 'react'
-import {FaSearch} from 'react-icons/fa';
+import {FaSearch, FaQuestionCircle} from 'react-icons/fa';
 import './AppBar.css'
 import { Link } from 'react-router-dom';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import { Divider, Box, Button } from '@material-ui/core';
 import {db} from '../firebase.js'
-import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneOutlined';
 
 var phone
 class MyAppBar extends React.Component{
@@ -15,12 +14,12 @@ state = {
 }
 
     componentDidMount(){
-        const deviceId = window.Android.getId()
+        /*const deviceId = window.Android.getId()
         db.collection("DeviceId").doc(deviceId).get().then(snapshot=>{
             const data = snapshot.get("id")
             this.setState({phone:data})
-        })
-        phone = <NotificationsNoneOutlinedIcon style={{fontSize:'25px',color:'black',marginTop:'5px'}} />
+        })*/
+        phone = <FaQuestionCircle style={{fontSize:'25px',color:'black',marginTop:'5px'}} />
         this.setState({button:phone})
     }
 
@@ -44,7 +43,7 @@ state = {
                             <div style={{display:'block',fontSize:'10px',color:'black',marginLeft:'5px'}} >Not Signed In</div>
                         </div>
                         <div style={{marginLeft:'auto'}} >
-                            {this.state.button}
+                           <Link to='/help' >{this.state.button}</Link>
                         </div>
                     </div>
                     </Box>

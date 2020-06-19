@@ -1,18 +1,18 @@
 import React from "react";
-import { rdb, db } from "../firebase.js";
+import { rdb} from "../firebase.js";
 import Divider from '@material-ui/core/Divider';
 import { FaArrowLeft,FaShoppingCart } from "react-icons/fa";
-import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Loader from 'react-loader-spinner'
-import ListSubheader from '@material-ui/core/ListSubheader';
 import { Button,Box } from '@material-ui/core';
+import { connect } from "react-redux";
+import {getNumbers} from './Actions/getActions'
 
 function exit(){
     window.Android.exit()
 }
 
-export default class MyCart extends React.Component{
+class MyCart extends React.Component{
 
 state = {
     phone:"",
@@ -39,10 +39,10 @@ imcrement = (amount) => {
 }
 
     componentDidMount(){
-        const phone = window.Android.getClassId()
-        const device = window.Android.getId()
+        const phone = "A"//window.Android.getClassId()
+        /*const device = window.Android.getId()
         this.setState({phone:phone})
-        this.setState({device:device})
+        this.setState({device:device})*/
 
         const timestamp = Date.now()
         var time = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(timestamp)
@@ -69,6 +69,8 @@ imcrement = (amount) => {
             this.setState({items:newState})
             this.setState({total:total})
         })
+        
+        getNumbers();
     }
     render(){
         if(this.state.length==null){
@@ -95,7 +97,7 @@ imcrement = (amount) => {
                 </div>
             )
         }
-        if(this.state.length==0){
+        if(false){
             return(
             <div>
                 <div style={{position:'absolute',top:'0',width:'100%',minHeight:'100%',backgroundColor:'white',zIndex:'300'}} >
@@ -132,7 +134,7 @@ imcrement = (amount) => {
                     <div style={{padding:'0px 20px'}} >
                         <Box boxShadow={3} style={{marginTop:'10px'}} >
                             <div style={{width:'100%',fontSize:'17px',fontWeight:'600',marginTop:'10px',padding:'10px'}}>
-                                Total: &#8377;{this.state.total}
+                                Total: &#8377;{this.props.basketProps.basketNumbers}
                             </div>
                         </Box>
                     </div>
@@ -197,3 +199,9 @@ imcrement = (amount) => {
         }
     }
 }
+
+const mapStateToPops = state => ({
+    basketProps: state.basketState
+})
+
+export default connect(mapStateToPops,{getNumbers})(MyCart)

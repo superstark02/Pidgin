@@ -5,10 +5,7 @@ import { db } from '../firebase'
 import ButtonBase from '@material-ui/core/ButtonBase/ButtonBase';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
-import { FaThumbsUp, FaDownload, } from 'react-icons/fa'
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import { withStyles } from '@material-ui/core/styles';
-import Rating from '@material-ui/lab/Rating';
+import { FaDownload } from 'react-icons/fa'
 import Box from '@material-ui/core/Box';
 
 
@@ -140,12 +137,17 @@ class MyListItem extends React.Component {
               }} >
                 <div class='showImage'>
                   {this.state.i1 ? (
-                    <div class='alternateImg' ><img src={this.state.i1} height='200px' style={{ marginRight: '2px' }}></img></div>
+                    <div class='alternateImg' >
+                      <img src={this.state.i1} height='200px' style={{ marginRight: '2px' }}></img>
+                      <img src={this.state.i2} height='200px' style={{ marginRight: '2px' }}></img>
+                      <img src={this.state.i3} height='200px' style={{ marginRight: '2px' }}></img>
+                      </div>
+                    
                   ) : (
-                      <div><Skeleton variant="rect" width="100%" height={200} /></div>
+                      <div style={{width:'100%',height:'100%',display:'flex',justifyContent:'space-around',alignItems:'center'}} >
+                        <img src={this.state.i2}  height='200px' ></img>
+                      </div>
                     )}
-                  <img src={this.state.i2} height='200px' style={{ marginRight: '2px' }}></img>
-                  <img src={this.state.i3} height='200px' style={{ marginRight: '2px' }}></img>
                 </div>
 
                 <div style={{ display: 'flex', position: 'absolute', zIndex: '50' }} >
