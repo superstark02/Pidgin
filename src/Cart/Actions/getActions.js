@@ -5,6 +5,6 @@ export const getNumbers = () => {
         console.log("Getting to Basket")
         dispatch({
             type: GET_NUMBERS_BASKET
-        })
+        });
     }
 }

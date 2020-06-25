@@ -134,7 +134,7 @@ imcrement = (amount) => {
                     <div style={{padding:'0px 20px'}} >
                         <Box boxShadow={3} style={{marginTop:'10px'}} >
                             <div style={{width:'100%',fontSize:'17px',fontWeight:'600',marginTop:'10px',padding:'10px'}}>
-                                Total: &#8377;{this.props.basketProps.basketNumbers}
+                                Total: &#8377;{this.props.basketProps.basketNumber}
                             </div>
                         </Box>
                     </div>

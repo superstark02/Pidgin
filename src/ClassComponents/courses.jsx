@@ -6,8 +6,10 @@ import Divider from '@material-ui/core/Divider';
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import RemoveRoundedIcon from '@material-ui/icons/RemoveRounded';
 import Chip from '@material-ui/core/Chip';
+import { connect } from 'react-redux'
+import { addBasket } from '../Cart/Actions/addAction'
 
-export default class Courses extends React.Component {
+class Courses extends React.Component {
     state = {
         courses:null
     }
@@ -57,7 +59,7 @@ export default class Courses extends React.Component {
                                             <div style={{ alignContent: 'center', marginLeft: 'auto', paddingLeft: '5px', right: '0', position: 'absolute' }} >
                                                 <Chip
                                                     size="small"
-                                                    icon={<AddRoundedIcon onClick={this.handleDelete} ></AddRoundedIcon>}
+                                                    icon={<AddRoundedIcon onClick={this.props.addBasket} ></AddRoundedIcon>}
                                                     label="1"
                                                     color="secondary"
                                                     onDelete={this.handleDelete}
@@ -76,3 +78,5 @@ export default class Courses extends React.Component {
         )
     }
 }
+
+export default connect(null, {addBasket})(Courses);

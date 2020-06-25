@@ -11,7 +11,7 @@ export default class CartButton extends React.Component {
                         <Divider />
                         <Button
                             disableElevation
-                            style={{width:'100%',padding:'10px'}}
+                            style={{width:'100%',padding:'10px',fontWeight:'bold'}}
                             variant="contained"
                             color="secondary"
                         >
