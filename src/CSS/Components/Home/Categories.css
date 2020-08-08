@@ -1,6 +1,6 @@
 .home-categories-box, .home-categories-image{
-    width: 100px;
-    height: 100px;
+    width: 25vw;
+    height: 25vw;
     border-radius: 5px;
     margin: 5px;
 }
@@ -11,10 +11,10 @@
 
 .categories-label{
     position: absolute;
-    width: 100px;
+    width: 25vw;
     background-image: linear-gradient(black, rgba(0,0,0,0));
-    padding: 5px;
+    padding: 2vw;
     border-radius: 5px;
-    font-size: 12px;
+    font-size: 3.5vw;
     color: white;
 }

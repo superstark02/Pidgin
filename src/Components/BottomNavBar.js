@@ -11,7 +11,8 @@ const useStyles = makeStyles({
     width: '100%',
     position:"fixed",
     bottom:'0',
-    boxShadow:'0px 0px 5px rgba(0,0,0,0.2)'
+    boxShadow:'0px 0px 5px rgba(0,0,0,0.2)',
+    height:'auto'
   },
 });
 

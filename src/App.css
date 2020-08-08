@@ -12,7 +12,7 @@ a:active {text-decoration: none;}  /* Selected link   */
 
 body,html{
 	margin: 0;
-	font-size: 16px;
+	font-size: 4vw;
 	font-family: Defualt;
 	font-weight: 400;
 	line-height: 1.8em;

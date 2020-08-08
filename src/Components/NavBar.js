@@ -31,7 +31,7 @@ export default function MyAppBar(props) {
     <React.Fragment>
       <CssBaseline />
       <HideOnScroll {...props}>
-        <AppBar elevation={0} style={{backgroundColor:"rgba(255,255,255,0.5)",color:"inherit"}} >
+        <AppBar elevation={0} style={{backgroundColor:"rgba(255,255,255,0.5)",color:"inherit",height:"auto"}} >
           <Toolbar>
             <Typography variant="h6">App Bar</Typography>
           </Toolbar>

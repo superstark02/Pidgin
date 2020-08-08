@@ -3,6 +3,7 @@ import MyAppBar from '../../Components/NavBar'
 import SimpleBottomNavigation from '../../Components/BottomNavBar'
 import '../../CSS/Pages/Home.css'
 import Categories from '../../Components/Home/Categories'
+import TopPicks from '../../Components/Home/TopPicks'
 
 export class HomePage extends Component {
     render() {
@@ -15,7 +16,7 @@ export class HomePage extends Component {
                     </div>
                 </div>
                 <Categories/>
-                
+                <TopPicks/>
                 <SimpleBottomNavigation/>
             </div>
         )
