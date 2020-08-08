@@ -109,23 +109,8 @@ class MyListItem extends React.Component {
       )
     }
 
-    if (this.state.brached) {
-      const data = db.collection('Classes').doc(this.props.classID).collection("Branches")
-      data.get().then(snapshot => {
-        const branches = []
-        var lat
-        var lon
-        snapshot.forEach(doc => {
-          const data = doc.data()
-          branches.push(data)
-        })
-        console.log(this.state.brached)
-      })
-    }
-
     return (
       <div class="animated fadeIn">
-
         <ButtonBase style={{ textAlign: 'left', maxWidth: '100%', width: '100%', padding: '0px 5px' }}>
           <div class='item'>
             <Box boxShadow={0} style={{ paddingBottom: '10px', borderRadius: '5px' }} >
@@ -138,11 +123,10 @@ class MyListItem extends React.Component {
                 <div class='showImage'>
                   {this.state.i1 ? (
                     <div class='alternateImg' >
-                      <img src={this.state.i1} height='200px' style={{ marginRight: '2px' }}></img>
-                      <img src={this.state.i2} height='200px' style={{ marginRight: '2px' }}></img>
-                      <img src={this.state.i3} height='200px' style={{ marginRight: '2px' }}></img>
+                        <img src={this.state.i1} height='200px' style={{ marginRight: '2px' }}></img>
+                        <img src={this.state.i2} height='200px' style={{ marginRight: '2px' }}></img>
+                        <img src={this.state.i3} height='200px' style={{ marginRight: '2px' }}></img>
                       </div>
-                    
                   ) : (
                       <div style={{width:'100%',height:'100%',display:'flex',justifyContent:'space-around',alignItems:'center'}} >
                         <img src={this.state.i2}  height='200px' ></img>

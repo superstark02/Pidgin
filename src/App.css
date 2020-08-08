@@ -1,3 +1,31 @@
+html
+{
+  -webkit-tap-highlight-color:transparent;
+}
+li{
+	font-family: FiraSansItalic;
+}
+a {color: #043540;}         /* Unvisited link  */
+a:visited {text-decoration: none;} /* Visited link    */
+a:hover {text-decoration: none;}   /* Mouse over link */
+a:active {text-decoration: none;}  /* Selected link   */
+
+body,html{
+	margin: 0;
+	font-size: 16px;
+	font-family: Defualt;
+	font-weight: 400;
+	line-height: 1.8em;
+	color: #202020;
+  }
+
+.wrap{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
 .imageCarousel {
 	display: block;
 	width: auto;
@@ -208,17 +236,7 @@ Link{
 								  supported by Chrome, Edge, Opera and Firefox */
 		text-decoration: none;
 }
-html
-{
-  -webkit-tap-highlight-color:transparent;
-}
-li{
-	font-family: FiraSansItalic;
-}
-a {color: #043540;}         /* Unvisited link  */
-a:visited {text-decoration: none;} /* Visited link    */
-a:hover {text-decoration: none;}   /* Mouse over link */
-a:active {text-decoration: none;}  /* Selected link   */
+
 
 .tabs{
 	display: none;
@@ -230,10 +248,6 @@ a:active {text-decoration: none;}  /* Selected link   */
 .resposive{
 	height: auto;
 }
-@font-face {
-	font-family: 'MyFont';
-	src: local('MyFont'), url(./fonts/abeezee/ABeeZee-Regular.ttf) format('ttf');
-  }
 
   @media only screen and (min-width:1136px) {
 	/* For mobile phones: */

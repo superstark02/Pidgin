@@ -2,12 +2,10 @@ import React from 'react'
 import './categories.css'
 import {db} from '../firebase'
 import {FaChevronCircleRight } from 'react-icons/fa';
-import Box from '@material-ui/core/Box';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { Link } from 'react-router-dom';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import icon from '../Images/open-menu.png'
