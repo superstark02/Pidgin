@@ -2,20 +2,16 @@
     background-color: white;
     font-size: large;
     font-weight: 200;
-    text-align: center;
 }
 .orange{
     color: white;
-    background-color: #043540;
-    padding-top: 20px;
-    padding-bottom: 10px;
 }
 
 .searchBar{
     margin-top: 5px;
     margin-right: 5px;
     margin-left: 5px;
-    border: solid 1px white;
+    border: solid 1px grey;
     border-radius: 4px;
     display: flex;
     align-content: center;
@@ -57,7 +53,7 @@ a{
 .appBarWebsite{
     display: none;
 }
-@media only screen and (min-width:620px) {
+@media only screen and (min-width:1136px) {
 	/* For mobile phones: */
 	.title{
         display: none;

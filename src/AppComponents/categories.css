@@ -1,21 +1,13 @@
-.containerTop{
-    max-width: 100%;
-    overflow-x: scroll;
-    display: flex;
-    padding: 10px;
-    padding-bottom: 40px;
-    padding-top: 0px;
-}
 .avatarCat{
     margin-right: 10px;
     margin-left: 10px;
 }
 .topCat{
-    padding-right: 20px;
     display: flex;
     padding: 10px;
+    padding-left: 30px;
     color: grey;
-    padding-top: 40px;
+    padding-top: 20px;
     margin: 0px;
     background-color: white;
 }
@@ -36,7 +28,7 @@
 .categoryImageWeb{
     display: none;
 }
-@media only screen and (min-width:620px) {
+@media only screen and (min-width:1136px) {
 	.categoryImageWeb{
         display: flex;
         width: 150px;

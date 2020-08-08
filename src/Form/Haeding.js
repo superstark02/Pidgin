@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
       <div className={classes.root}>
         <AppBar position="static" color='#043540' style={{backgroundColor:'#043540',padding:'10px',color:'white'}}>
           <Toolbar>
-            <Typography variant="h4" className={classes.title} align='center'>
+            <Typography variant="h6" className={classes.title} align='center'>
               Pidgin
             </Typography>
           </Toolbar>

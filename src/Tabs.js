@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import CategoriesWeb from './AppComponents/categoriesWeb.js';
 import ClassListWeb from './ClassComponents/listWeb.js';
+import { FaSchool,FaQuestionCircle, FaIcons, FaUserAlt } from 'react-icons/fa';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -60,9 +61,9 @@ export default function SimpleTabs() {
     <div className={classes.root}>
       <AppBar position="static" class='tabs' >
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered> 
-          <Tab label="SCHOOLS" {...a11yProps(0)} />
-          <Tab label="CLASSES" {...a11yProps(1)} />
-          <Tab label="HELP" {...a11yProps(2)} />
+          <Tab label={<div><FaSchool/><div style={{fontSize:'10px'}} >Schools</div></div>} {...a11yProps(0)} />
+          <Tab label={<div><FaIcons/><div style={{fontSize:'10px'}} >Classes</div></div>} {...a11yProps(1)} />
+          <Tab label={<div><FaUserAlt/><div style={{fontSize:'10px'}} >Help</div></div>} {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>

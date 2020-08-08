@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'Defualt';
+  src: local('Defualt'), url(./Fonts/Montserrat/Montserrat-Regular.ttf) format('truetype');
+}
+
+

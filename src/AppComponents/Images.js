@@ -3,7 +3,7 @@ import {db} from '../firebase'
 import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 import './Images.css'
-import Shimmer from './Shimmer';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const chevronWidth = 40;
 
@@ -28,28 +28,22 @@ class Images extends React.Component{
     
     render(){
       if(this.state.images==null){
-        return <Shimmer/>
+        return <Skeleton variant="rect" width={210} height={190} animation="wave" style={{margin:'10px'}} />
       }
         return(
            <div>
               <div class='resposive' >
                 <div class='coverCarousel'>
-                <Carousel
-                    infinite
-                    autoPlay={3000}
-                    stopAutoPlayOnHover={true}
-                    animationSpeed={500}
-                    centered
-                >
+                
                     {
                           this.state.images&&
                           this.state.images.map(images=>{
                             return(
-                             <img src={images.image} class='image'/>
+                              <img src={images.image} class='image'/>
                             )
                           })
                     }
-                </Carousel>
+                
                 </div>
             </div>
            </div>
