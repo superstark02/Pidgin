@@ -15,6 +15,7 @@ export class HomePage extends Component {
                     </div>
                 </div>
                 <Categories/>
+                
                 <SimpleBottomNavigation/>
             </div>
         )
