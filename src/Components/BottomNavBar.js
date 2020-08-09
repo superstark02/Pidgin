@@ -27,7 +27,7 @@ const CustomBar = withStyles({
 
 export default function SimpleBottomNavigation() {
   const classes = useStyles();
-  const [value, setValue] = React.useState('recents');
+  const [value, setValue] = React.useState('Home');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

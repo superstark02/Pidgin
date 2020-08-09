@@ -30,8 +30,8 @@ class App extends React.Component{
           <Route exact path='/notifications' component={Notifications} ></Route>
           <Route exact path='/form' component={MyForm} ></Route>
           <Route exact path='/search' component={SearchView} ></Route>
-          <Route exact path='/course' component={Course} ></Route>
-          <Route exact path='/classDisplay' component={ClassesDisplay} ></Route>
+          <Route exact path='/class-display/:id/:course_id' component={Course} ></Route>
+          <Route exact path='/class-display/:id' component={ClassesDisplay} ></Route>
           <Route exact path='/courseEdit' component={Adapter} ></Route>
           <Route exact path='/class' component={HomePage} ></Route>
           <Route exact path='/clientForm/:id' component={ClientForm}></Route>

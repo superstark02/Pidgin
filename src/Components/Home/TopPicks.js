@@ -1,8 +1,5 @@
 import React from 'react'
 import { db } from '../../firebase'
-import ReactAvatar from 'react-avatar';
-import { FaStar, FaChevronRight } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { ButtonBase, Box, Divider } from '@material-ui/core';
@@ -34,30 +31,18 @@ class TopPicks extends React.Component {
                     <div className="home-heading">
                         Top Picks
                     </div>
-                    <div class='containerTop'>
+                    <div class='wrap'>
 
-                        <div class='avatarTop'>
+                        <div class='avatarTop'  style={{margin:"10px"}} >
                             <Skeleton variant="circle" animation="wave" width={60} height={60} />
                         </div>
-                        <div class='namePick'><Typography variant="body2">
-                            <Skeleton animation="wave" />
-                        </Typography>
-                        </div>
 
-                        <div class='avatarTop'>
+                        <div class='avatarTop' style={{margin:"10px"}} >
                             <Skeleton variant="circle" animation="wave" width={60} height={60} />
                         </div>
-                        <div class='namePick'><Typography variant="body2">
-                            <Skeleton animation="wave" />
-                        </Typography>
-                        </div>
 
-                        <div class='avatarTop'>
+                        <div class='avatarTop'style={{margin:"10px"}} >
                             <Skeleton variant="circle" animation="wave" width={60} height={60} />
-                        </div>
-                        <div class='namePick'><Typography variant="body2">
-                            <Skeleton animation="wave" />
-                        </Typography>
                         </div>
 
                         <div style={{ width: '30px' }} />

@@ -4,7 +4,7 @@ import SimpleBottomNavigation from '../../Components/BottomNavBar'
 import '../../CSS/Pages/Home.css'
 import Categories from '../../Components/Home/Categories'
 import TopPicks from '../../Components/Home/TopPicks'
-import ClassList from '../../ClassComponents/List'
+import ClassList from '../../Components/Home/ClassList'
 
 export class HomePage extends Component {
     render() {

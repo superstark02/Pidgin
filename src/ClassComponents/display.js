@@ -7,8 +7,6 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Loading from './Loading';
-import { connect } from 'react-redux'
-import { addBasket } from '../Cart/Actions/addAction'
 import Features from './features';
 import Eligibilty from './eligibility';
 import Courses from './courses';
@@ -41,16 +39,11 @@ class ClassesDisplay extends React.Component {
   }
 
   componentDidMount() {
-    name = this.props.location.state.classId;
+    name = this.props.match.params.id;
     this.setState({ id: name })
 
     this.setState({ loading: true })
     setInterval(() => { this.setState({ loading: false }) }, 1000);
-    /*const id = window.Android.getId()
-    const check = db.collection("DeviceId").doc(id)
-      check.get().then(snapshot=>{
-        this.setState({signed:snapshot.get("id")})
-      })*/
 
     const data = db.collection('Classes').doc(name);
     data.get()
@@ -236,4 +229,4 @@ class ClassesDisplay extends React.Component {
     )
   }
 }
-export default connect(null, { addBasket })(ClassesDisplay);
+export default ClassesDisplay;

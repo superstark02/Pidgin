@@ -5,8 +5,6 @@ import { FaArrowLeft,FaShoppingCart } from "react-icons/fa";
 import ListItem from '@material-ui/core/ListItem';
 import Loader from 'react-loader-spinner'
 import { Button,Box } from '@material-ui/core';
-import { connect } from "react-redux";
-import {getNumbers} from './Actions/getActions'
 
 function exit(){
     window.Android.exit()
@@ -70,7 +68,6 @@ imcrement = (amount) => {
             this.setState({total:total})
         })
         
-        getNumbers();
     }
     render(){
         if(this.state.length==null){
@@ -204,4 +201,4 @@ const mapStateToPops = state => ({
     basketProps: state.basketState
 })
 
-export default connect(mapStateToPops,{getNumbers})(MyCart)
+export default MyCart
