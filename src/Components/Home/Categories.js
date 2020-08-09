@@ -20,10 +20,10 @@ export class Categories extends Component {
         while (this.state.images == null) {
             return <div>
                 <div>
-                    <div class='topCat'>
+                    <div className="home-heading">
                         Top By Categories
-                </div>
-                    <div class='containerCat' >
+                    </div>
+                    <div className="wrap" style={{flexWrap:"wrap"}}  >
                         <div class='home-categories-box'> <Skeleton animation="wave" height={100} variant="rect" width={100} /> </div>
                         <div class='home-categories-box'> <Skeleton animation="wave" height={100} variant="rect" width={100} /> </div>
                         <div class='home-categories-box'> <Skeleton animation="wave" height={100} variant="rect" width={100} /> </div>
@@ -38,7 +38,7 @@ export class Categories extends Component {
         return (
             <div>
                 <div>
-                    <div class='topCat'>
+                    <div className="home-heading">
                         Top By Categories
                     </div>
                     <div className="wrap" style={{flexWrap:"wrap"}} >

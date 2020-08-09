@@ -1,21 +1,15 @@
-html
-{
-  -webkit-tap-highlight-color:transparent;
-}
-li{
-	font-family: FiraSansItalic;
-}
-a {color: #043540;}         /* Unvisited link  */
+a {color: #043540; text-decoration: none;}         /* Unvisited link  */
 a:visited {text-decoration: none;} /* Visited link    */
 a:hover {text-decoration: none;}   /* Mouse over link */
 a:active {text-decoration: none;}  /* Selected link   */
 
 body,html{
 	margin: 0;
-	font-size: 4vw;
+	font-size: 16px;
 	font-family: Defualt;
 	font-weight: 400;
 	line-height: 1.8em;
+	-webkit-tap-highlight-color:transparent;
 	color: #202020;
 }
 div{

@@ -123,13 +123,13 @@ class MyListItem extends React.Component {
                 <div class='showImage'>
                   {this.state.i1 ? (
                     <div class='alternateImg' >
-                        <img src={this.state.i1} height='200px' style={{ marginRight: '2px' }}></img>
-                        <img src={this.state.i2} height='200px' style={{ marginRight: '2px' }}></img>
-                        <img src={this.state.i3} height='200px' style={{ marginRight: '2px' }}></img>
-                      </div>
+                        <img src={this.state.i1} height='100%' style={{ marginRight: '2px' }}></img>
+                        <img src={this.state.i2} height='100%' style={{ marginRight: '2px' }}></img>
+                        <img src={this.state.i3} height='100%' style={{ marginRight: '2px' }}></img>
+                    </div>
                   ) : (
-                      <div style={{width:'100%',height:'100%',display:'flex',justifyContent:'space-around',alignItems:'center'}} >
-                        <img src={this.state.i2}  height='200px' ></img>
+                      <div style={{width:'100%',height:'55vw',display:'flex',justifyContent:'space-around',alignItems:'center'}} >
+                        <img src={this.state.i2}  height='100%' ></img>
                       </div>
                     )}
                 </div>

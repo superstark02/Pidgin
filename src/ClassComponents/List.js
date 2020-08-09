@@ -3,12 +3,8 @@ import {FaThumbsUp, FaDownload,} from 'react-icons/fa'
 import {rdb} from '../firebase'
 import './list.css'
 import MyListItem from './listItem';
-import PropTypes from 'prop-types';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
-import { FixedSizeList } from 'react-window';
 
 
 
