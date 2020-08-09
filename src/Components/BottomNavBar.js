@@ -4,7 +4,7 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
-import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
+import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
 import { FaBinoculars } from 'react-icons/fa';
 
 const useStyles = makeStyles({
@@ -36,7 +36,7 @@ export default function SimpleBottomNavigation() {
   return (
     <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
       <CustomBar label={<div className={classes.label} >Home</div>} value="Home" icon={<HomeOutlinedIcon />} />
-      <CustomBar label={<div className={classes.label} >Nearby</div>} value="Nearby" icon={<RoomOutlinedIcon />} />
+      <CustomBar label={<div className={classes.label} >Explore</div>} value="Nearby" icon={<ExploreOutlinedIcon />} />
       <CustomBar label={<div className={classes.label} >Find My Class</div>} value="Find" icon={<FaBinoculars />} />
       <CustomBar label={<div className={classes.label} >Account</div>} value="Account" icon={<AccountCircleOutlinedIcon />} />
     </BottomNavigation>
