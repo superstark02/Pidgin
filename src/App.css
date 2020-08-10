@@ -16,6 +16,10 @@ div{
 	font-family: Defualt;
 }
 
+input{
+	outline: none;
+}
+
 .wrap{
 	display: flex;
 	justify-content: center;

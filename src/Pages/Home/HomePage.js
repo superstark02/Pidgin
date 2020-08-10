@@ -7,18 +7,22 @@ import TopPicks from '../../Components/Home/TopPicks'
 import ClassList from '../../Components/Home/ClassList'
 
 export class HomePage extends Component {
+
+    state = {
+        page: "Home"
+    }
+
+    changePage = (newPage) => {
+        this.setState({ page: newPage })
+    }
+
     render() {
         return (
             <div>
-                <MyAppBar/>
-                <div className="wrap" >
-                    <div className="home-search-box" >
-                        Search courses, subjects ...
-                    </div>
-                </div>
-                <Categories/>
-                <TopPicks/>
-                <ClassList/>
+                <MyAppBar />
+                <Categories />
+                <TopPicks />
+                <ClassList />
                 <SimpleBottomNavigation/>
             </div>
         )

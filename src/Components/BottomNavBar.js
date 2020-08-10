@@ -4,7 +4,7 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
-import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
+import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import { FaBinoculars } from 'react-icons/fa';
 
 const useStyles = makeStyles({
@@ -13,15 +13,22 @@ const useStyles = makeStyles({
     position:"fixed",
     bottom:'0',
     boxShadow:'0px 0px 5px rgba(0,0,0,0.2)',
-  },
-  label:{
-    fontSize:"12px"
+    zIndex:"1"
   },
 });
 
 const CustomBar = withStyles({
   root:{
-    color:"rgba(0,0,0,0.5)"
+    color:"rgba(0,0,0,0.5)",
+    '&$selected': {
+      color: "#043540",
+    },
+  },
+  label:{
+    fontSize:"12px",
+  },
+  selected:{
+    color:"#043540",
   }
 })(BottomNavigationAction);
 
@@ -35,10 +42,10 @@ export default function SimpleBottomNavigation() {
 
   return (
     <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
-      <CustomBar label={<div className={classes.label} >Home</div>} value="Home" icon={<HomeOutlinedIcon />} />
-      <CustomBar label={<div className={classes.label} >Explore</div>} value="Nearby" icon={<ExploreOutlinedIcon />} />
-      <CustomBar label={<div className={classes.label} >Find My Class</div>} value="Find" icon={<FaBinoculars />} />
-      <CustomBar label={<div className={classes.label} >Account</div>} value="Account" icon={<AccountCircleOutlinedIcon />} />
+      <CustomBar showLabel={false} label="Home" value="Home" icon={<HomeOutlinedIcon />} />
+      <CustomBar showLabel={false} label="Search" value="Search" icon={<SearchRoundedIcon />} />
+      <CustomBar showLabel={false} label="Find" value="Find" icon={<FaBinoculars />} />
+      <CustomBar showLabel={false} label="Account" value="Account" icon={<AccountCircleOutlinedIcon />} />
     </BottomNavigation>
   );
 }
