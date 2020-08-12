@@ -5,4 +5,11 @@
     border: 0.5px rgba(128, 128, 128, 0.5) solid;
     border-radius: 5px;
     color: rgba(128, 128, 128, 0.5);
+    margin: 15px 0px;
+}
+
+.home-heading{
+    margin: 10px;
+    font-size: 16px;
+    font-weight: 700;
 }

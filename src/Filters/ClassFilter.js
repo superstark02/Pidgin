@@ -1,6 +1,5 @@
 import React from 'react'
 import {FaArrowLeft, FaSearch, FaHeart} from 'react-icons/fa'
-import TopPicks from '../AppComponents/topPicks.js'
 import './ClassFilter.css'
 import { Link } from 'react-router-dom'
 import {db,rdb} from '../firebase'

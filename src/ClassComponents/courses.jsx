@@ -6,8 +6,6 @@ import Divider from '@material-ui/core/Divider';
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import RemoveRoundedIcon from '@material-ui/icons/RemoveRounded';
 import Chip from '@material-ui/core/Chip';
-import { connect } from 'react-redux'
-import { addBasket } from '../Cart/Actions/addAction'
 
 class Courses extends React.Component {
     state = {
@@ -79,4 +77,4 @@ class Courses extends React.Component {
     }
 }
 
-export default connect(null, {addBasket})(Courses);
+export default Courses;

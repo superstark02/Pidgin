@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaMap } from 'react-icons/fa'
-import { db } from '../firebase'
+import { db } from '../../firebase'
 import ButtonBase from '@material-ui/core/ButtonBase/ButtonBase';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
@@ -145,12 +145,7 @@ class MyListItem extends React.Component {
               </Link>
               <div class='container'>
 
-                <Link to={{
-                  pathname: '/classDisplay',
-                  state: {
-                    classId: this.state.id
-                  }
-                }} >
+                <Link to={"/class-display/"+this.state.id}>
                   <div class='name'>{this.state.name}</div>
                 </Link>
 

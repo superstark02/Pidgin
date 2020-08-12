@@ -1,0 +1,26 @@
+.top-picks-item , .top-picks-image{
+    width: 30vw;
+    border-radius: 10px;
+    margin: 10px 5px;
+    text-overflow: ellipsis;
+}
+
+.top-picks-image{
+    height: 30vw;
+    margin: 0px;
+}
+
+.top-picks-name{
+    font-size: 12px;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+    max-width: 100%;
+    text-overflow: ellipsis; 
+    overflow: hidden;
+}
+
+.top-picks-type{
+    font-size: 10px;
+    text-align: left;
+}
