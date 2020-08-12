@@ -3,9 +3,13 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
+import SearchIcon from '@material-ui/icons/Search';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import SchoolOutlinedIcon from '@material-ui/icons/SchoolOutlined';
 
 const AntTabs = withStyles({
   root: {
+    height:'65px'
   },
   indicator: {
     backgroundColor: '#043540',
@@ -30,6 +34,8 @@ const AntTab = withStyles({
     '&:focus': {
       opacity: 1,
     },
+    fontSize:"10px",
+    padding:"0px"
   },
   indicator: {
     display: 'flex',
@@ -61,23 +67,27 @@ const useStyles = makeStyles((theme) => ({
     bottom: "0",
     boxShadow:"0px 0px 5px rgba(0,0,0,0.3)"
   },
+  icon:{
+    margin: '0px'
+  }
 }));
 
-export default function SimpleBottomNavigation() {
+export default function SimpleBottomNavigation(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState("Home");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    props.changePage(newValue)
   };
 
   return (
     <div className={classes.root}>
       <AntTabs value={value} variant="fullWidth" onChange={handleChange} aria-label="ant example">
-        <AntTab icon={<AccountCircleOutlinedIcon/>} label="Tab 1" />
-        <AntTab label="Tab 2" />
-        <AntTab label="Tab 3" />
-        <AntTab icon={<AccountCircleOutlinedIcon/>} label="Account" />
+        <AntTab icon={<HomeOutlinedIcon className={classes.icon} />} label="Home" value="Home" />
+        <AntTab icon={<SearchIcon/>} label="Search" className={classes.icon} value="Search" />
+        <AntTab icon={<SchoolOutlinedIcon/>} label="My Classes" className={classes.icon} value="Classes" />
+        <AntTab icon={<AccountCircleOutlinedIcon/>} label="Account" className={classes.icon} value="Account" />
       </AntTabs>
     </div>
   );
