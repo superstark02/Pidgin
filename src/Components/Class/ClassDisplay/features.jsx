@@ -1,8 +1,7 @@
 import React from 'react'
-import ListItem from '@material-ui/core/ListItem';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import {FaClock, FaGlobe, FaStopwatch, FaCalendar, FaFemale, FaUser, FaUsers} from 'react-icons/fa';
-import trial from '../Images/trial.png'
+import trial from '../../../Images/trial.png'
 
 var women, online,womenCell ,onlinecell;
 

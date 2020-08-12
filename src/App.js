@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import ClassesDisplay from './ClassComponents/display'
+import ClassesDisplay from './Components/Class/ClassDisplay'
 import SearchView from './Filters/ClassFilter';
 import Course from './ClassComponents/course';
 import history from "./history";
