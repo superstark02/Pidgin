@@ -1,51 +1,84 @@
 import React from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
-import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
-import { FaBinoculars } from 'react-icons/fa';
 
-const useStyles = makeStyles({
+const AntTabs = withStyles({
   root: {
-    width: '100%',
-    position:"fixed",
-    bottom:'0',
-    boxShadow:'0px 0px 5px rgba(0,0,0,0.2)',
-    zIndex:"1"
   },
-});
+  indicator: {
+    backgroundColor: '#043540',
+  },
+})(Tabs);
 
-const CustomBar = withStyles({
-  root:{
-    color:"rgba(0,0,0,0.5)",
+const AntTab = withStyles({
+  root: {
+    textTransform: 'none',
+    minWidth: 72,
+    fontFamily: "inherit",
+    '&:hover': {
+      color: '#043540',
+      opacity: 1,
+    },
     '&$selected': {
-      color: "#043540",
+      color: '#043540',
+    },
+    '&:focus': {
+      color: '#043540',
+    },
+    '&:focus': {
+      opacity: 1,
     },
   },
-  label:{
-    fontSize:"12px",
+  indicator: {
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    '& > span': {
+      maxWidth: 40,
+      width: '100%',
+      backgroundColor: '#635ee7',
+    },
   },
-  selected:{
-    color:"#043540",
-  }
-})(BottomNavigationAction);
+  selected: {},
+})((props) => <Tab {...props} TabIndicatorProps={{ children: <span /> }} />);
+
+
+function a11yProps(index) {
+  return {
+    id: `scrollable-force-tab-${index}`,
+    'aria-controls': `scrollable-force-tabpanel-${index}`,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    width: '100%',
+    backgroundColor: theme.palette.background.paper,
+    position: "fixed",
+    bottom: "0",
+    boxShadow:"0px 0px 5px rgba(0,0,0,0.3)"
+  },
+}));
 
 export default function SimpleBottomNavigation() {
   const classes = useStyles();
-  const [value, setValue] = React.useState('Home');
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
-      <CustomBar showLabel={false} label="Home" value="Home" icon={<HomeOutlinedIcon />} />
-      <CustomBar showLabel={false} label="Search" value="Search" icon={<SearchRoundedIcon />} />
-      <CustomBar showLabel={false} label="Find" value="Find" icon={<FaBinoculars />} />
-      <CustomBar showLabel={false} label="Account" value="Account" icon={<AccountCircleOutlinedIcon />} />
-    </BottomNavigation>
+    <div className={classes.root}>
+      <AntTabs value={value} variant="fullWidth" onChange={handleChange} aria-label="ant example">
+        <AntTab icon={<AccountCircleOutlinedIcon/>} label="Tab 1" />
+        <AntTab label="Tab 2" />
+        <AntTab label="Tab 3" />
+        <AntTab icon={<AccountCircleOutlinedIcon/>} label="Account" />
+      </AntTabs>
+    </div>
   );
 }
