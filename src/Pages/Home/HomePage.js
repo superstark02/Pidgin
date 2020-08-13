@@ -24,7 +24,10 @@ export class HomePage extends Component {
                 {
                     this.state.page === "Home" ? (
                         <div>
-                            
+                            <MyAppBar/>
+                            <Categories/>
+                            <TopPicks/>
+                            <ClassList/>
                         </div>
                     ): this.state.page === 'Search' ? (
                         <div>
