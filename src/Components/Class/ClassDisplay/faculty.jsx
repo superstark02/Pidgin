@@ -15,14 +15,14 @@ export default class Faculty extends React.Component {
                                 if (qualifications.header == true) {
                                     return (
                                         <ListItem style={{ padding: '10px 15px' }} >
-                                            <div style={{ fontFamily: 'FiraSans', fontSize: '13px', color: 'white' }}><b>{qualifications.item}</b></div>
+                                            <div style={{ fontSize: '13px', color: 'white' }}><b>{qualifications.item}</b></div>
                                         </ListItem>
                                     )
                                 }
                                 else {
                                     return (
                                         <ListItem style={{ padding: '10px 15px' }} >
-                                            <div style={{ fontFamily: 'FiraSans', fontSize: '13px', color: 'white' }}>{qualifications.item}</div>
+                                            <div style={{ fontSize: '13px', color: 'white' }}>{qualifications.item}</div>
                                         </ListItem>
                                     )
                                 }

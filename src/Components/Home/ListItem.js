@@ -158,18 +158,13 @@ class MyListItem extends React.Component {
 
               </div>
 
-              <Link to={{
-                pathname: '/classDisplay',
-                state: {
-                  classId: this.state.id
-                }
-              }} >
+              <Link to={"/classDisplay/"+this.state.id}>
                 <div class='type'>
                   {this.state.adress}
                 </div>
                 <hr color='#E6E6E6' style={{ margin: '5px 0px' }} ></hr>
                 <div class='fees'>
-                  <div >Starting Fees &#8377;{this.state.fees}</div>
+                  <div>Starting Fees &#8377;{this.state.fees}</div>
                 </div>
               </Link>
             </Box>

@@ -14,7 +14,7 @@ export default class Note extends React.Component {
                             this.props.note.map(note => {
                                 return (
                                     <ListItem style={{ padding: '10px 15px' }} >
-                                        <div style={{ fontFamily: 'FiraSans', fontSize: '13px' }}>{note.item}</div>
+                                        <div style={{ fontSize: '13px' }}>{note.item}</div>
                                     </ListItem>
                                 )
                             })

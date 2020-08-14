@@ -14,7 +14,7 @@ export default class Eligibilty extends React.Component {
                             this.props.eligibility.map(eligibility => {
                                 return (
                                     <ListItem style={{ padding: '0px 15px' }} >
-                                        <div style={{ fontFamily: 'FiraSans', fontSize: '13px', color: 'white' }}>{eligibility.item}</div>
+                                        <div style={{ fontSize: '13px', color: 'white' }}>{eligibility.item}</div>
                                     </ListItem>
                                 )
                             })

@@ -1,4 +1,4 @@
-a {color: #043540; text-decoration: none;}         /* Unvisited link  */
+a {color: black; text-decoration: none;}         /* Unvisited link  */
 a:visited {text-decoration: none;} /* Visited link    */
 a:hover {text-decoration: none;}   /* Mouse over link */
 a:active {text-decoration: none;}  /* Selected link   */
