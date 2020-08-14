@@ -3,8 +3,11 @@ import React, { Component } from 'react'
 export class Cart extends Component {
     render() {
         return (
-            <div>
-                
+            <div className="wrap" style={{height:"100vh",padding:"40px",textAlign:'center',flexDirection:"column"}}  >
+                <div>FIND A BETTER TEACHER FOR BETTER LIFE</div>
+                <div style={{fontSize:"12px"}} >
+                    No items in cart
+                </div>
             </div>
         )
     }

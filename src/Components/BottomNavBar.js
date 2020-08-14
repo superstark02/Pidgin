@@ -5,7 +5,7 @@ import Tab from '@material-ui/core/Tab';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import SearchIcon from '@material-ui/icons/Search';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
-import SchoolOutlinedIcon from '@material-ui/icons/SchoolOutlined';
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 
 const AntTabs = withStyles({
   root: {
@@ -86,7 +86,7 @@ export default function SimpleBottomNavigation(props) {
       <AntTabs value={value} variant="fullWidth" onChange={handleChange} aria-label="ant example">
         <AntTab icon={<HomeOutlinedIcon className={classes.icon} />} label="Home" value="Home" />
         <AntTab icon={<SearchIcon/>} label="Search" className={classes.icon} value="Search" />
-        <AntTab icon={<SchoolOutlinedIcon/>} label="My Classes" className={classes.icon} value="Classes" />
+        <AntTab icon={<ShoppingCartOutlinedIcon/>} label="Cart" className={classes.icon} value="Cart" />
         <AntTab icon={<AccountCircleOutlinedIcon/>} label="Account" className={classes.icon} value="Account" />
       </AntTabs>
     </div>

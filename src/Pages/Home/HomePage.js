@@ -6,6 +6,7 @@ import Categories from '../../Components/Home/Categories'
 import TopPicks from '../../Components/Home/TopPicks'
 import ClassList from '../../Components/Home/ClassList'
 import SearchPage from '../Search/SearchPage'
+import Cart from '../Cart/Cart'
 
 export class HomePage extends Component {
 
@@ -33,6 +34,8 @@ export class HomePage extends Component {
                         <div>
                             <SearchPage/>
                         </div>
+                    ) : this.state.page === 'Cart' ? (
+                        <Cart/>
                     ) : (
                         <div></div>
                     )

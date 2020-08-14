@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import ClassesDisplay from './Components/Class/ClassDisplay'
-import Course from './ClassComponents/course';
 import history from "./history";
 import HomePage from './Pages/Home/HomePage';
 import SearchPage from './Pages/Search/SearchPage';
@@ -15,7 +14,6 @@ class App extends React.Component{
       <Router history={history}>
         <Switch>
           <Route exact path='/cart' component={Cart} ></Route>
-          <Route exact path='/class-display/:id/:course_id' component={Course} ></Route>
           <Route exact path='/class-display/:id' component={ClassesDisplay} ></Route>
           <Route exact path='/class' component={HomePage} ></Route>
           <Route exact path='/search' component={SearchPage} ></Route>
