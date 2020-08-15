@@ -7,6 +7,7 @@ import TopPicks from '../../Components/Home/TopPicks'
 import ClassList from '../../Components/Home/ClassList'
 import SearchPage from '../Search/SearchPage'
 import Cart from '../Cart/Cart'
+import Account from '../Account/Account'
 
 export class HomePage extends Component {
 
@@ -35,7 +36,9 @@ export class HomePage extends Component {
                             <SearchPage/>
                         </div>
                     ) : this.state.page === 'Cart' ? (
-                        <Cart/>
+                            <Cart/>
+                    ) : this.state.page === 'Account' ? (
+                            <Account/>
                     ) : (
                         <div></div>
                     )
