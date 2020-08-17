@@ -11,6 +11,7 @@ import Eligibilty from './ClassDisplay/eligibility';
 import Courses from './ClassDisplay/courses';
 import Faculty from './ClassDisplay/faculty';
 import Note from './ClassDisplay/note';
+import '../../CSS/Components/Class/ClassDisplay.css'
 
 var name
 
@@ -179,7 +180,7 @@ class ClassesDisplay extends React.Component {
           </div>
         </div>
 
-        <div class='displaySubtitle'>
+        <div class='class-display-address'>
           <div>{this.state.address}</div>
           <div style={{ display: 'flex' }} >
             <div class='displayAge'>

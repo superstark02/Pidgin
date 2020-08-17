@@ -22,18 +22,18 @@ export default class Features extends React.Component {
                 <li>
                     <ul style={{ padding: '10px' }} >
                         <ListSubheader style={{ fontSize: '12px', backgroundColor: 'white' }} >{`Features`}</ListSubheader>
-                        <table style={{ width: '100%', marginBottom: '30px', fontFamily: 'sans-serif' }}>
+                        <table className="feature-table" >
                             <tr>
-                                <td><FaClock color='#353535' style={{ marginBottom: '-2px', marginRight: '5px' }} /> 2:00 pm to 8:00 pm</td>
-                                <td><FaStopwatch color='#353535' style={{ marginBottom: '-2px', marginRight: '5px' }} /> 1hr/Class</td>
+                                <td><FaClock className="feature-icon" /> 2:00 pm to 8:00 pm</td>
+                                <td><FaStopwatch className="feature-icon"/> 1hr/Class</td>
                             </tr>
                             <tr>
-                                <td><FaCalendar color='#353535' style={{ marginBottom: '-2px', marginRight: '5px' }} /> 3 clases/week </td>
+                                <td><FaCalendar className="feature-icon"/> 3 clases/week </td>
                                 {onlinecell}
                             </tr>
                             <tr>
-                                <td><FaUser color='#353535' style={{ marginBottom: '-2px', marginRight: '5px' }} /> Group Classes Availible</td>
-                                <td><FaUsers color='#353535' style={{ marginBottom: '-2px', marginRight: '5px' }} /> Individual Classes Availible</td>
+                                <td><FaUser  className="feature-icon" /> Group Classes Availible</td>
+                                <td><FaUsers  className="feature-icon" /> Individual Classes Availible</td>
                             </tr>
                             <tr>
                                 {womenCell}

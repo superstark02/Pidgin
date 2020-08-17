@@ -14,7 +14,7 @@ code {
 
 @font-face {
   font-family: 'Defualt';
-  src: local('Defualt'), url(./Fonts/Montserrat/Montserrat-Regular.ttf) format('truetype');
+  src: local('Defualt'), url(./Fonts/Default-Font/Defualt.otf) format('truetype');
 }
 
 

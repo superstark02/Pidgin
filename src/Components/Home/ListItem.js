@@ -111,9 +111,9 @@ class MyListItem extends React.Component {
 
     return (
       <div class="animated fadeIn">
-        <ButtonBase style={{ textAlign: 'left', maxWidth: '100%', width: '100%', padding: '0px 5px' }}>
+        <ButtonBase className="wrap" style={{flexDirection:"column"}} >
           <div class='item'>
-            <Box boxShadow={0} style={{ paddingBottom: '10px', borderRadius: '5px' }} >
+            <Box boxShadow={3} style={{ paddingBottom: '10px', borderRadius: '5px' }} >
               <Link to={{
                 pathname: '/classDisplay',
                 state: {

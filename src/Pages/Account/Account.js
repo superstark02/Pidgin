@@ -12,6 +12,7 @@ import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import firebase, { db } from '../../firebase'
 import getUser from '../../Database/getUer';
+import { Link } from '@material-ui/core';
 
 const general = [
     {
@@ -108,7 +109,7 @@ export class Account extends Component {
                             <div style={{ backgroundColor: "rgba(0,0,0,0.2)", height: '0.5px' }} ></div>
                         </div>
                     ) : this.state.user !== null ? (
-                        <div className="acc-header" style={{ fontSize: "15px",display:"flex",justifyContent:"space-between" }} >
+                        <div className="acc-header" style={{ fontSize: "15px", display: "flex", justifyContent: "space-between" }} >
                             <div>
                                 <p style={{ fontSize: "20px", marginBottom: "5px" }} >
                                     <b>{this.state.user[0]}</b>
@@ -116,8 +117,8 @@ export class Account extends Component {
                                 {this.state.user[2]}
                                 <div style={{ backgroundColor: "rgba(0,0,0,0.2)", height: '0.5px' }} ></div>
                             </div>
-                            <div className="wrap" style={{width:"auto"}} >
-                                <img src={this.state.user[1]} width="70px" height="70px" style={{borderRadius:"50%"}} />
+                            <div className="wrap" style={{ width: "auto" }} >
+                                <img src={this.state.user[1]} width="70px" height="70px" style={{ borderRadius: "50%" }} />
                             </div>
                         </div>
                     ) : (
@@ -134,12 +135,14 @@ export class Account extends Component {
                         {
                             general.map(item => {
                                 return (
-                                    <ListItem button>
-                                        <ListItemIcon>
-                                            {item.icon}
-                                        </ListItemIcon>
-                                        <ListItemText primary={<div>{item.name}</div>} />
-                                    </ListItem>
+                                    <Link to='/' className="Link" >
+                                        <ListItem button>
+                                            <ListItemIcon>
+                                                {item.icon}
+                                            </ListItemIcon>
+                                            <ListItemText primary={<div>{item.name}</div>} />
+                                        </ListItem>
+                                    </Link>
                                 )
                             })
                         }
@@ -168,13 +171,13 @@ export class Account extends Component {
 
                 </div>
                 <strong>
-                    <div onClick={this.handleLogout} >
+                    <div className="account-options" onClick={this.handleLogout} >
                         Logout
                     </div>
-                    <div>
+                    <div className="account-options" >
                         Rate us on PlayStore
                     </div>
-                    <div>
+                    <div className="account-options" >
                         Feedback
                     </div>
                 </strong>

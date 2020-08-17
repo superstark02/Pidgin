@@ -7,17 +7,32 @@ body,html{
 	margin: 0;
 	font-size: 16px;
 	font-family: Defualt;
-	font-weight: 400;
-	line-height: 1.8em;
 	-webkit-tap-highlight-color:transparent;
-	color: #202020;
+	font-size: 14px;
+}
+input{
+	outline: none;
 }
 div{
 	font-family: Defualt;
+	-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
-
-input{
-	outline: none;
+Link{
+	-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+								  supported by Chrome, Edge, Opera and Firefox */
+		text-decoration: none;
+		color: black;
 }
 
 .wrap{
@@ -39,6 +54,7 @@ input{
 	width: 100%;
 	background-color: #E6E6E6;
 }
+
 .overlayBlack{
 	position: absolute; 
 	top: 0; 
@@ -49,98 +65,27 @@ input{
 	opacity:1;
 	color: white;
 }
-.overlayContainer {
-	position: relative;
-	max-width: 100%;
-	background-color: #E6E6E6;
-  }
+
 .backIcon{
 	margin-top: 20px;
 	margin-left: 20px;
 	color: #FFFF;
 }
+
 .displayTitle{
 	margin: 10px 10px;
 	max-width: 100%;
 	font-weight: 600;
-	color: #043540;
 	align-self: center;
 	font-size: 16px;
 	display: flex;
 }
+
 .mapIcon{
 	margin-left: auto;
 	margin-right: 20px;
 }
-.displaySubtitle{
-	margin: 0px 10px;
-	max-width: 100%;
-	font-weight: 300;
-	font-size: small;
-	height: auto;
-}
-.classCard{
-	border-radius: 5px;
-	height: 180px;
-	width: 140px;
-	background-color: white;
-	margin: 20px 10px;
-	text-align: center;
-	border-radius: 20px 0px 20px 0px;
-	font-size: 15px;
-	font-weight: 300;
-	padding: 10px 10px;
-	background-image: url('./Images/courses.png');
-}
-.offers{
-	height: auto;
-	padding: 6px 30px;
-	color: white;
-	white-space: nowrap;
-	width: 300px;
-	margin: 5px 10px;
-	border-radius: 5px;
-	font-size: 13px;
-	font-weight: 500;
-	background-size: cover;
-	background-position: center;
-	background-image: url(./Images/Offer.png);
-	background-repeat: no-repeat;
-}
-.width_{
-	width: 100px;
-	margin: 0px 10px;
-}
-.displaySubtitle2{
-	margin: 10px 0px 0px 10px;
-	max-width: 100%;
-	font-weight: 500;
-	font-size: small;
-	display: flex;
-}
-.list{
-	padding: 5px;
-	margin: 5px;
-	border-radius: 5px;
-	width: auto;
-	height: 40px;
-	display: inline-block;
-	background-color: #04BF7B;
-	color: white;
-}
-.qualifications{
-	margin: 0px 10px;
-	max-width: 100%;
-	font-weight: 300;
-	font-size: small;
-	color: #043540;
-}
-.courseItem{
-	font-size: 14px;
-	font-weight: 600;
-	margin: 10px 10px 0px 10px;
-	font-family: FiraSans;
-}
+
 .displayAge{
 	background-color: #58f73b;
 	padding: 5px;
@@ -165,104 +110,4 @@ input{
 	margin-bottom: 10px;
 	margin-top: 10px;
 }
-td{
-	padding: 10px;
-	color: #043540;
-	font-weight: 300;
-	font-size: 12px;
-	vertical-align: middle;
-	height: 15px;
-}
-.eligibility{
-	width: 100%;
-}
-/*--------------------------------------School Css---------------------------------------*/
 
-.appBar{
-	width: 100%;
-	max-width: 100%;
-	color: white;
-	background-color:#043540;
-	padding-top: 20px;
-	padding-bottom: 10px;
-	font-size: large;
-    font-weight: 200;
-    text-align: center;
-}
-.richText{
-	text-align: center;
-	max-width: 100%;
-	padding: 0px 20px;
-	color: #043540;
-	font-weight: 400;
-	font-size: 20px;
-}
-.richText1{
-	text-align: center;
-	max-width: 100%;
-	padding: 0px 20px;
-	color: #043540;
-	font-weight: 700;
-	font-size: 20px;
-	margin: 10px;
-}
-.device{
-	z-index: 100;
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-	max-width: 100%;
-	background-color: white;
-	box-shadow: 5px 5px 10px;
-}
-.tab{
-	color: grey
-}
-div{
-	-webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
-}
-Link{
-	-webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-								  supported by Chrome, Edge, Opera and Firefox */
-		text-decoration: none;
-}
-
-
-.tabs{
-	display: none;
-}
-.unresponsive{
-	visibility: hidden;
-	height: 0px;
-}
-.resposive{
-	height: auto;
-}
-
-  @media only screen and (min-width:1136px) {
-	/* For mobile phones: */
-	.unresponsive{
-		visibility: visible;
-	}
-	.device{
-		display: none;
-	}
-	.resposive{
-		display: none;
-	}
-	.tabs{
-		display: inline;
-		justify-content: space-around;
-	}
-  }
