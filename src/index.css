@@ -14,7 +14,12 @@ code {
 
 @font-face {
   font-family: 'Defualt';
-  src: local('Defualt'), url(./Fonts/Default-Font/Defualt.otf) format('truetype');
+  src: local('Defualt'), url(./Fonts/Default-Font/Default.otf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Thin';
+  src: local('Thin'), url(./Fonts/Default-Font/Thin.otf) format('truetype');
 }
 
 

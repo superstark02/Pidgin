@@ -20,7 +20,7 @@ export default class Features extends React.Component {
         return (
             <React.Fragment>
                 <li>
-                    <ul style={{ padding: '10px' }} >
+                    <ul style={{ padding: '10px',fontFamily:"Thin" }} >
                         <ListSubheader style={{ fontSize: '12px', backgroundColor: 'white' }} >{`Features`}</ListSubheader>
                         <table className="feature-table" >
                             <tr>

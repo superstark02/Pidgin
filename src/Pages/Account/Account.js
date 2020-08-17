@@ -135,14 +135,12 @@ export class Account extends Component {
                         {
                             general.map(item => {
                                 return (
-                                    <Link to='/' className="Link" >
-                                        <ListItem button>
-                                            <ListItemIcon>
-                                                {item.icon}
-                                            </ListItemIcon>
-                                            <ListItemText primary={<div>{item.name}</div>} />
-                                        </ListItem>
-                                    </Link>
+                                    <ListItem button>
+                                        <ListItemIcon>
+                                            {item.icon}
+                                        </ListItemIcon>
+                                        <ListItemText primary={<div>{item.name}</div>} />
+                                    </ListItem>
                                 )
                             })
                         }

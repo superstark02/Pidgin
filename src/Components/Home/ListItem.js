@@ -159,7 +159,7 @@ class MyListItem extends React.Component {
               </div>
 
               <Link to={"/classDisplay/"+this.state.id}>
-                <div class='type'>
+                <div class='type' style={{fontFamily:"Thin"}} >
                   {this.state.adress}
                 </div>
                 <hr color='#E6E6E6' style={{ margin: '5px 0px' }} ></hr>
